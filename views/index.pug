@@ -1,0 +1,8 @@
+extends ./layouts/common.pug
+block nav
+	include ./layouts/nav.pug
+block content
+	h1 Hello #{name}
+	a(href='/users') Users List 	
+block footer
+	include ./layouts/footer.pug			
