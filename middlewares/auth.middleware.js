@@ -29,6 +29,9 @@ module.exports.requireEmployee = function(req,res,next){
 	if(res.locals.user.role === 1){
 		next();
 	}
+	else{
+		res.json('Not permission');
+	}
 };
 module.exports.requireAdmin = function(req,res,next){
 	if(res.locals.user.role === 2){

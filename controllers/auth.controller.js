@@ -25,7 +25,15 @@ module.exports.postLogin = function(req,res){
 			for(var i=0;i<=data.length;i++){
 				if(data[i].email === email && data[i].password === hashedPassword){
 					res.cookie('userId',data[i].id,{signed:true});
-					res.redirect('/logged/');
+					if(data[i].role===0){
+						res.redirect('/logged/');
+					}
+					else if(data[i].role===1){
+						res.redirect('/logged/employee');
+					}
+					else{
+						res.redirect('/logged/admin');
+					}
 					return;
 				}
 				else{
@@ -35,8 +43,7 @@ module.exports.postLogin = function(req,res){
 					});
 					return;
 				}
-			}
-			
+			}			
 		});
 	}
 };

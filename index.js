@@ -16,6 +16,8 @@ var productRoute = require('./routes/product.route.js');
 
 var loggedRouter = require('./routes/logged.route.js');
 
+var logoutRouter = require('./routes/logout.route.js');
+
 var authMiddleware = require('./middlewares/auth.middleware.js');
 
 var app = express();
@@ -45,6 +47,8 @@ app.use('/auth',authRouter);
 app.use('/account',registerRouter);
 
 app.use('/logged',authMiddleware.requireAuth,loggedRouter);
+
+app.use('/logout',logoutRouter);
 
 //app.use('/products',productRoute);
 
