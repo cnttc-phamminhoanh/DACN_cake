@@ -7,7 +7,7 @@ html, body {
 	font-weight: bold;
 }
 .bg {
-	background: url('../images/christmas-cake-3840x2160-receipt-5k-17069.jpg') no-repeat;
+	background: url('../images/xanhla.png') no-repeat;
 	background-size: cover;
 	width: 100%;
 	height: 100%;
@@ -15,7 +15,7 @@ html, body {
 .row-container {
 	border: 1px solid #fff;
 	border-radius: 20px;
-	margin-top: 15vh; /* vh= Viewport's height */
+	margin-top: 20vh; /* vh= Viewport's height */
 	padding: 30px;
 	-webkit-box-shadow: 0px 1px 22px 5px rgba(0,0,0,0.75);
 	-moz-box-shadow: 0px 1px 22px 5px rgba(0,0,0,0.75);

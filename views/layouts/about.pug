@@ -1,0 +1,46 @@
+#about.counter
+  .container
+    .row
+      .col-lg-5.col-xl-6
+        .image-container
+          img.img-fluid(src='images/about.jpg', alt='alternative')
+        // end of image-container
+      // end of col
+      .col-lg-7.col-xl-6
+        .text-container
+          .section-title ABOUT
+          h2 We&apos;re Passionate About Delivering Growth Services
+          p
+            | Our goal is to provide the right business growth services at the appropriate time so companies can benefit from the created momentum and thrive for a long period of time
+          ul.list-unstyled.li-space-lg
+            li.media
+              i.fas.fa-square
+              .media-body Everything we recommend has direct positive impact
+            li.media
+              i.fas.fa-square
+              .media-body You will become an important partner of our company
+          // Counter
+          #counter
+            .cell
+              .counter-value.number-count(data-count='231') 1
+              .counter-info
+                | Happy
+                br
+                | Users
+            .cell
+              .counter-value.number-count(data-count='121') 1
+              .counter-info
+                | Issues
+                br
+                | Solved
+            .cell
+              .counter-value.number-count(data-count='159') 1
+              .counter-info
+                | Good
+                br
+                | Reviews
+          // end of counter
+        // end of text-container
+      // end of col
+    // end of row
+  // end of container

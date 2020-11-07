@@ -1,0 +1,112 @@
+.tabs
+  .area-1
+    .tabs-container
+      // Tabs Links
+      ul#ariaTabs.nav.nav-tabs(role='tablist')
+        li.nav-item
+          a#nav-tab-1.nav-link.active(data-toggle='tab', href='#tab-1', role='tab', aria-controls='tab-1', aria-selected='true')
+            i.fas.fa-th
+            |  Kinh doanh
+        li.nav-item
+          a#nav-tab-2.nav-link(data-toggle='tab', href='#tab-2', role='tab', aria-controls='tab-2', aria-selected='false')
+            i.fas.fa-th
+            |  Chuy&ecirc;n m&ocirc;n
+        li.nav-item
+          a#nav-tab-3.nav-link(data-toggle='tab', href='#tab-3', role='tab', aria-controls='tab-3', aria-selected='false')
+            i.fas.fa-th
+            |  Ch&#x1EA5;t l&#x1B0;&#x1EE3;ng
+      // end of tabs links
+      // Tabs Content
+      #ariaTabsContent.tab-content
+        // Tab
+        #tab-1.tab-pane.fade.show.active(role='tabpanel', aria-labelledby='tab-1')
+          h4 D&#x1ECB;ch v&#x1EE5; kinh doanh c&#x1EE7;a c&ocirc;ng ty
+          p
+            | Aria provides the most innovative and customized business services in the industry. Our 
+            a.green.page-scroll(href='#services') Services
+            |  section shows how flexible we are for all types of budgets.
+          // Progress Bars
+          .progress-container
+            .title Ph&aacute;t tri&#x1EC3;n kinh doanh 100%
+            .progress
+              .progress-bar.first(role='progressbar', aria-valuenow='0', aria-valuemin='0', aria-valuemax='100')
+            .title Ph&aacute;t hi&#x1EC7;n c&#x1A1; h&#x1ED9;i 76%
+            .progress
+              .progress-bar.second(role='progressbar', aria-valuenow='75', aria-valuemin='0', aria-valuemax='100')
+            .title Ti&#x1EBF;p th&#x1ECB; tr&#x1EF1;c ti&#x1EBF;p 90%
+            .progress
+              .progress-bar.third(role='progressbar', aria-valuenow='90', aria-valuemin='0', aria-valuemax='100')
+          // end of progress-container
+          // end of progress bars
+        // end of tab-pane
+        // end of tab
+        // Tab
+        #tab-2.tab-pane.fade(role='tabpanel', aria-labelledby='tab-2')
+          ul.list-unstyled.li-space-lg.first
+            li.media
+              .media-bullet 1
+              .media-body
+                strong High quality
+                |  is on top of our list when it comes to the way we deliver the services
+            li.media
+              .media-bullet 2
+              .media-body
+                strong Maximum impact
+                |  is what we look for in our actions
+            li.media
+              .media-bullet 3
+              .media-body
+                strong Quality standards
+                |  are important but meant to be exceeded
+          ul.list-unstyled.li-space-lg.last
+            li.media
+              .media-bullet 4
+              .media-body
+                strong We&apos;re always looking
+                |  for industry leaders to help them win their market position
+            li.media
+              .media-bullet 5
+              .media-body
+                strong Evaluation
+                |  is a key aspect of this business and important
+            li.media
+              .media-bullet 6
+              .media-body
+                strong Ethic
+                |  procedures ar alwasy at the base of everything we do
+        // end of tab-pane
+        // end of tab
+        // Tab
+        #tab-3.tab-pane.fade(role='tabpanel', aria-labelledby='tab-3')
+          p
+            strong We strive to achieve
+            |  100% customer satisfaction for both types of customers: hiring companies and job seekers. Types of customers: 
+            a.green(href='#your-link') with huge potential
+          p
+            strong Our goal is to help
+            |  your company achieve its full potential and establish long term stability for 
+            a.green(href='#your-link') the stakeholders
+          ul.list-unstyled.li-space-lg
+            li.media
+              i.fas.fa-square
+              .media-body It&apos;s easy to get a quotation, just call our office anytime
+            li.media
+              i.fas.fa-square
+              .media-body We&apos;ll get back to you with an initial estimate soon
+            li.media
+              i.fas.fa-square
+              .media-body Get ready to see results even after only 30 days
+            li.media
+              i.fas.fa-square
+              .media-body Ask for a quote and start improving your business
+            li.media
+              i.fas.fa-square
+              .media-body Just fill out the form and we&apos;ll call you right away
+        // end of tab-pane
+        // end of tab
+      // end of tab-content
+      // end of tabs content
+    // end of tabs-container
+  // end of area-1 on same line and no space between comments to eliminate margin white space
+  .area-2
+  // end of area-2

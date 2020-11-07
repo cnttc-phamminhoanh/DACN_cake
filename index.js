@@ -37,9 +37,7 @@ app.use(express.static('public'));
 var port = 3000;
 
 app.get('/',function(req,res){
-	res.render('index.pug',{
-		name : 'Mati 17CNTTC'
-	});
+	res.render('index.pug');
 });
 
 app.use('/auth',authRouter);

@@ -1,0 +1,80 @@
+#contact.form-2
+  .container
+    .row
+      .col-lg-6
+        .text-container
+          .section-title LIÊN HỆ
+          
+          h2 Liên lạc với chúng tôi bằng cách điền vào form
+          p Bạn có thể ghé qua văn phòng của chúng tôi để thưởng thức một tách cà phê và chỉ cần sử dụng mẫu liên hệ bên dưới nếu có bất kỳ câu hỏi và thắc mắc nào
+          ul.list-unstyled.li-space-lg
+            li.address
+              i.fas.fa-map-marker-alt 
+              | K130/2 Ông Ích Đường, Hòa Thọ Đông, Cẩm Lệ, Đà Nẵng.
+            li
+              i.fas.fa-phone
+              a(href='tel:003024630820') 0857875232
+            li
+              i.fas.fa-phone
+              a(href='tel:003024630820') 0583206954
+            li
+              i.fas.fa-envelope
+              a(href='mailto:oanhpham41121@gmail.com') oanhpham41121@gmail.com
+          h3 Theo dõi chúng tôi trên mạng xã hội
+          span.fa-stack
+            a(href='#your-link')
+              span.hexagon
+              i.fab.fa-facebook-f.fa-stack-1x
+          span.fa-stack
+            a(href='#your-link')
+              span.hexagon
+              i.fab.fa-twitter.fa-stack-1x
+          span.fa-stack
+            a(href='#your-link')
+              span.hexagon
+              i.fab.fa-pinterest.fa-stack-1x
+          span.fa-stack
+            a(href='#your-link')
+              span.hexagon
+              i.fab.fa-instagram.fa-stack-1x
+          span.fa-stack
+            a(href='#your-link')
+              span.hexagon
+              i.fab.fa-linkedin-in.fa-stack-1x
+          span.fa-stack
+            a(href='#your-link')
+              span.hexagon
+              i.fab.fa-behance.fa-stack-1x
+        // end of text-container
+      // end of col
+      .col-lg-6
+        // Contact Form
+        form#contactForm(data-toggle='validator', data-focus='false')
+          .form-group
+            input#cname.form-control-input(type='text', required='')
+            label.label-control(for='cname') Name
+            .help-block.with-errors
+          .form-group
+            input#cemail.form-control-input(type='email', required='')
+            label.label-control(for='cemail') Email
+            .help-block.with-errors
+          .form-group
+            textarea#cmessage.form-control-textarea(required='')
+            label.label-control(for='cmessage') Your message
+            .help-block.with-errors
+          .form-group.checkbox
+            input#cterms(type='checkbox', value='Agreed-to-Terms', required='')
+            | Tôi đồng ý với các 
+            a(href='privacy-policy.html') Các điều khoản
+            |  và 
+            a(href='terms-conditions.html') Các chính sách
+            |  của Aria
+            .help-block.with-errors
+          .form-group
+            button.form-control-submit-button(type='submit') SUBMIT MESSAGE
+          .form-message
+            #cmsgSubmit.h3.text-center.hidden
+        // end of contact form
+      // end of col
+    // end of row
+  // end of container

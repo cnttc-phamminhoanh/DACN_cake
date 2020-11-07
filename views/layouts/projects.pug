@@ -1,0 +1,69 @@
+#projects.filter
+  .container
+    .row
+      .col-lg-12
+        .section-title SẢN PHẨM
+        h2 Một số sản phẩm của chúng tôi 
+      // end of col
+    // end of row
+    .row
+      .col-lg-12
+        // Filter
+        .button-group.filters-button-group
+          a.button.is-checked(data-filter='*')
+            span BÁNH
+          a.button(data-filter='.design')
+            span ĐỒ UỐNG
+          a.button(data-filter='.development')
+            span PHÁT TRIỂN
+          a.button(data-filter='.marketing')
+            span TIẾP THỊ
+          a.button(data-filter='.seo')
+            span KHUYẾN MÃI
+        // end of button group
+        .grid
+          .element-item.development
+            a.popup-with-move-anim(href='#project-1')
+              .element-item-overlay
+                span Bánh Mousse CaCao
+              img(src='images/MOUSSECACAO.png', alt='alternative')
+          .element-item.design.development.marketing.seo
+            a.popup-with-move-anim(href='#project-5')
+              .element-item-overlay
+                span Caramel Phomai
+              img(src='images/CARAMELPHOMAI.jpg', alt='alternative')      
+          .element-item.development
+            a.popup-with-move-anim(href='#project-2')
+              .element-item-overlay
+                span Bánh Mousse Đào
+              img(src='images/MOUSSEDAO.png', alt='alternative')
+          .element-item.design.development.marketing
+            a.popup-with-move-anim(href='#project-4')
+              .element-item-overlay
+                span Bánh Chuối
+              img(src='images/BANHCHUOI.jpg', alt='alternative')
+          .element-item.design.marketing.seo
+            a.popup-with-move-anim(href='#project-6')
+              .element-item-overlay
+                span Phomai Chanh Dây
+              img(src='images/PHOMAICHANHDAY.jpg', alt='alternative')       
+          .element-item.design.development.marketing
+            a.popup-with-move-anim(href='#project-3')
+              .element-item-overlay
+                span Bánh So-Co-La
+              img(src='images/SOCOLAHL.png', alt='alternative')            
+          .element-item.design.marketing
+            a.popup-with-move-anim(href='#project-7')
+              .element-item-overlay
+                span Phomai Cà Phê
+              img(src='images/PHOMAICAPHE.jpg', alt='alternative')
+          .element-item.design.marketing
+            a.popup-with-move-anim(href='#project-8')
+              .element-item-overlay
+                span Phomai Trà Xanh
+              img(src='images/PHOMAITRAXANH.jpg', alt='alternative')
+        // end of grid
+        // end of filter
+      // end of col
+    // end of row
+  // end of container

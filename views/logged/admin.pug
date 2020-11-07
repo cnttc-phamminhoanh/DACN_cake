@@ -2,27 +2,145 @@ html
 	head
 		meta(charset='utf-8')
 		meta(name='viewport', content='width=device-width, initial-scale=1')
-		title Register Form with validation using JQuery
-		link(rel="stylesheet",href="/styles/register.css")
+		title Admin Page
 		script(src='https://code.jquery.com/jquery-3.5.1.slim.min.js', integrity='sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj', crossorigin='anonymous')
 		link(rel="stylesheet",href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" )
-		link(rel="stylesheet",href="/styles/custom.css")
+		
+		link(href='/styles/sb-admin-2.min.css', rel='stylesheet')
+		link(href='https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i', rel='stylesheet')
+		link(href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css',rel='stylesheet', type='text/css')
 		script(src='https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js', integrity='sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV', crossorigin='anonymous')
 		script(type='text/javascript', src='/js/index.js')
-	body
-		nav.navbar.navbar-expand-md.navbar-light.bg-light.sticky-top
-			.container-fluid
-				a.navbar-brand(href='/')
-					img(src="http://localhost:3000/images/logo.png",height="40")
-				button.navbar-toggler(type='button', data-toggle='collapse', data-target='#navbarResponsive', aria-controls='navbarNav', aria-expanded='false', aria-label='Toggle navigation')
-					span.navbar-toggler-icon
-			.collapse.navbar-collapse#navbarResponsive
-				ul.navbar-nav.ml-auto
-					//- li.nav-item.active
-					//- 	a.nav-link(href='/') Home 
-					li.nav-item
-						if user	
-							a.nav-link(href='#') #{user}		
-					li.nav-item
-						a.nav-link(href='/logout') Logout	
-						
+	body#page-top
+		#wrapper
+			ul#accordionSidebar.navbar-nav.bg-gradient-primary.sidebar.sidebar-dark.accordion
+				a.sidebar-brand.d-flex.align-items-center.justify-content-center(href='/')
+					.sidebar-brand-icon.rotate-n-15
+						i.fas.fa-laugh-wink
+					.sidebar-brand-text.mx-3 Cake Coffee 
+				hr.sidebar-divider.my-0
+				li.nav-item.active
+					a.nav-link(href='#')
+						i.fas.fa-fw.fa-tachometer-alt
+						span Dashboard
+				hr.sidebar-divider
+				.sidebar-heading Interface
+				li.nav-item
+					a.nav-link.collapsed(href='#', data-toggle='collapse', data-target='#collapseTwo', aria-expanded='true', aria-controls='collapseTwo')
+						i.fas.fa-fw.fa-cog
+						span Components
+					#collapseTwo.collapse(aria-labelledby='headingTwo', data-parent='#accordionSidebar')
+						.bg-white.py-2.collapse-inner.rounded
+							h6.collapse-header Custom Components
+							a.collapse-item(href='#') Buttons
+							a.collapse-item(href='#') Cards
+			#content-wrapper.d-flex.flex-column
+				#content
+					nav.navbar.navbar-expand.navbar-light.bg-white.topbar.mb-4.static-top.shadow
+						button#sidebarToggleTop.btn.btn-link.d-md-none.rounded-circle.mr-3
+							i.fa.fa-bars
+						form.d-none.d-sm-inline-block.form-inline.mr-auto.ml-md-3.my-2.my-md-0.mw-100.navbar-search
+							.input-group
+								input.form-control.bg-light.border-0.small(type='text', placeholder='Search for...', aria-label='Search', aria-describedby='basic-addon2')
+								.input-group-append
+									button.btn.btn-primary(type='button')
+										i.fas.fa-search.fa-sm
+						ul.navbar-nav.ml-auto
+							li.nav-item.dropdown.no-arrow.d-sm-none
+								a#searchDropdown.nav-link.dropdown-toggle(href='#', role='button', data-toggle='dropdown', aria-haspopup='true', aria-expanded='false')
+									i.fas.fa-search.fa-fw
+								.dropdown-menu.dropdown-menu-right.p-3.shadow.animated--grow-in(aria-labelledby='searchDropdown')
+									form.form-inline.mr-auto.w-100.navbar-search
+										.input-group
+											input.form-control.bg-light.border-0.small(type='text', placeholder='Search for...', aria-label='Search', aria-describedby='basic-addon2')
+											.input-group-append
+												button.btn.btn-primary(type='button')
+													i.fas.fa-search.fa-sm
+							li.nav-item.dropdown.no-arrow.mx-1
+								a#alertsDropdown.nav-link.dropdown-toggle(href='#', role='button', data-toggle='dropdown', aria-haspopup='true', aria-expanded='false')
+									i.fas.fa-bell.fa-fw
+									span.badge.badge-danger.badge-counter 3+
+								.dropdown-list.dropdown-menu.dropdown-menu-right.shadow.animated--grow-in(aria-labelledby='alertsDropdown')
+									h6.dropdown-header 
+										| Alerts Center
+									a.dropdown-item.d-flex.align-items-center(href='#')
+										.mr-3
+											.icon-circle.bg-primary
+												i.fas.fa-file-alt.text-white
+										div
+											.small.text-gray-500 December 12, 2019
+											span.font-weight-bold A new monthly report is ready to download!
+									a.dropdown-item.d-flex.align-items-center(href='#')
+										.mr-3
+											.icon-circle.bg-success
+												i.fas.fa-donate.text-white
+										div
+											.small.text-gray-500 December 7, 2019
+											|                     $290.29 has been deposited into your account!
+									a.dropdown-item.d-flex.align-items-center(href='#')
+										.mr-3
+											.icon-circle.bg-warning
+												i.fas.fa-exclamation-triangle.text-white
+										div
+											.small.text-gray-500 December 2, 2019
+											|                     Spending Alert: We&apos;ve noticed unusually high spending for your account.
+									a.dropdown-item.text-center.small.text-gray-500(href='#') Show All Alerts
+							li.nav-item.dropdown.no-arrow.mx-1
+								a#messagesDropdown.nav-link.dropdown-toggle(href='#', role='button', data-toggle='dropdown', aria-haspopup='true', aria-expanded='false')
+									i.fas.fa-envelope.fa-fw
+									span.badge.badge-danger.badge-counter 7
+								.dropdown-list.dropdown-menu.dropdown-menu-right.shadow.animated--grow-in(aria-labelledby='messagesDropdown')
+									h6.dropdown-header
+										| Message Center
+									a.dropdown-item.d-flex.align-items-center(href='#')
+										.dropdown-list-image.mr-3
+											img.rounded-circle(src='https://source.unsplash.com/fn_BT9fwg_E/60x60', alt='')
+											.status-indicator.bg-success
+										.font-weight-bold
+											.text-truncate Hi there! I am wondering if you can help me with a problem I&apos;ve been having.
+											.small.text-gray-500 Emily Fowler &middot; 58m
+									a.dropdown-item.d-flex.align-items-center(href='#')
+										.dropdown-list-image.mr-3
+											img.rounded-circle(src='https://source.unsplash.com/AU4VPcFN4LE/60x60', alt='')
+											.status-indicator
+										div
+											.text-truncate
+												| I have the photos that you ordered last month, how would you like them sent to you?
+											.small.text-gray-500 Jae Chun &middot; 1d
+									a.dropdown-item.d-flex.align-items-center(href='#')
+										.dropdown-list-image.mr-3
+											img.rounded-circle(src='https://source.unsplash.com/CS2uCrpNzJY/60x60', alt='')
+											.status-indicator.bg-warning
+										div
+											.text-truncate
+												| Last month&apos;s report looks great, I am very happy with the progress so far, keep up the good work!
+											.small.text-gray-500 Morgan Alvarez &middot; 2d
+									a.dropdown-item.d-flex.align-items-center(href='#')
+										.dropdown-list-image.mr-3
+											img.rounded-circle(src='https://source.unsplash.com/Mv9hjnEUHR4/60x60', alt='')
+											.status-indicator.bg-success
+										div
+											.text-truncate
+												| Am I a good boy? The reason I ask is because someone told me that people say this to all dogs, even if they aren&apos;t good...
+											.small.text-gray-500 Chicken the Dog &middot; 2w
+									a.dropdown-item.text-center.small.text-gray-500(href='#') Read More Messages
+							.topbar-divider.d-none.d-sm-block
+							li.nav-item.dropdown.no-arrow
+								a#userDropdown.nav-link.dropdown-toggle(href='#', role='button', data-toggle='dropdown', aria-haspopup='true', aria-expanded='false')
+									span.mr-2.d-none.d-lg-inline.text-gray-600.small #{user}
+									img.img-profile.rounded-circle(src='https://source.unsplash.com/QAB-WJcbgJk/60x60')
+								.dropdown-menu.dropdown-menu-right.shadow.animated--grow-in(aria-labelledby='userDropdown')
+									a.dropdown-item(href='#')
+										i.fas.fa-user.fa-sm.fa-fw.mr-2.text-gray-400
+										|                   Profile
+									a.dropdown-item(href='#')
+										i.fas.fa-cogs.fa-sm.fa-fw.mr-2.text-gray-400
+										|                   Settings
+									a.dropdown-item(href='#')
+										i.fas.fa-list.fa-sm.fa-fw.mr-2.text-gray-400
+										|                   Activity Log
+									.dropdown-divider
+									a.dropdown-item(href='http://localhost:3000/logout', data-target='#logoutModal')
+										i.fas.fa-sign-out-alt.fa-sm.fa-fw.mr-2.text-gray-400
+										|                   Logout
+									

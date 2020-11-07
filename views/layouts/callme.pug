@@ -1,0 +1,58 @@
+#callMe.form-1
+  .container
+    .row
+      .col-lg-6
+        .text-container
+          .section-title GỌI CHO CHÚNG TÔI
+          h2.white Để lại thông tin và chúng tôi sẽ liên lạc với bạn
+          p.white
+            | Bạn chỉ cẩn điền vào form và chúng thôi sẽ liên hệ và tư vấn cho bạn
+          ul.list-unstyled.li-space-lg.white
+            li.media
+              i.fas.fa-square
+              .media-body Rất dễ dàng chỉ cần điền vào biểu mẫu để chúng tôi có thể gọi
+            li.media
+              i.fas.fa-square
+              .media-body Trong cuộc gọi, chúng tôi sẽ yêu cầu một số thông tin về công ty
+            li.media
+              i.fas.fa-square
+              .media-body Đừng ngần ngại gửi email cho chúng tôi nếu có bất kỳ câu hỏi hoặc thắc mắc nào
+      // end of col
+      .col-lg-6
+        // Call Me Form
+        form#callMeForm(data-toggle='validator', data-focus='false')
+          .form-group
+            input#lname.form-control-input(type='text', name='lname', required='')
+            label.label-control(for='lname') Name
+            .help-block.with-errors
+          .form-group
+            input#lphone.form-control-input(type='text', name='lphone', required='')
+            label.label-control(for='lphone') Phone
+            .help-block.with-errors
+          .form-group
+            input#lemail.form-control-input(type='email', name='lemail', required='')
+            label.label-control(for='lemail') Email
+            .help-block.with-errors
+          .form-group
+            select#lselect.form-control-select(required='')
+              option.select-option(value='', disabled='', selected='') Interested in...
+              option.select-option(value='Off The Ground') Off The Ground
+              option.select-option(value='Accelerated Growth') Accelerated Growth
+              option.select-option(value='Market Domination') Market Domination
+            .help-block.with-errors
+          .form-group.checkbox.white
+            input#lterms(type='checkbox', value='Agreed-to-Terms', name='lterms', required='')
+            | Tôi đồng ý với các 
+            a.white(href='privacy-policy.html') Các điều khoản
+            |  và 
+            a.white(href='terms-conditions.html') Các chính sách
+            |  của Aria
+            .help-block.with-errors
+          .form-group
+            button.form-control-submit-button(type='submit') CALL ME
+          .form-message
+            #lmsgSubmit.h3.text-center.hidden
+        // end of call me form
+      // end of col
+    // end of row
+  // end of container

@@ -1,26 +1,47 @@
-footer.fixed-bottom
-	.container-fluid.padding
-		.row.text-center
-			.col-md-4
-				//- img(src='./images/logo.png',height="40")
-				h4 Cake Coffee and Milk tea
-				hr.light
-				p 0857875232	
-				p oanhpham41121@gmail.com
-				p Ong Ich Duong street, DaNang, Vietnam
-			.col-md-4
-				hr.light
-				h5 Working hours
-				hr.light
-				p Monday-Friday: 8am - 10:30pm
-				p Weekend: 8am - 12am
-			.col-md-4
-				hr.light
-				h5 Services
-				hr.light
-				//- p Outsourcing
-				p Website development
-				p Mobile applications
-			.col-12
-				hr.light-100
-				h5 &copy; Cake Coffee and Milk tea
+.footer
+  .container
+    .row
+      .col-md-6
+        .text-container.about
+          h4(style='color:#d4b32f;') Aria Cake And Drink
+          a.navbar-brand.logo-image(href='/')
+            img(src='http://localhost:3000/images/logo.svg', alt='alternative',style='width: 140px;height: 60px;margin-left:25px;')
+        // end of text-container
+      // end of col
+      .col-md-2
+        .text-container
+          h4(style='color:#d4b32f;') Working hours
+          ul.list-unstyled.li-space-lg.white
+            li
+              a.white(href='#your-link',style='text-decoration: none;') Monday - Friday
+            li
+              a.white(href='terms-conditions.html',style='text-decoration: none;')  8am - 10:30pm
+            li
+              a.white(href='privacy-policy.html',style='text-decoration: none;') Weekend : 8am - 12am
+        // end of text-container
+      // end of col
+      .col-md-2
+        .text-container
+          h4(style='color:#d4b32f;') Links
+          ul.list-unstyled.li-space-lg
+            li
+              a.white(href='#your-link',style='text-decoration: none;') 0857875232
+            li
+              a.white(href='#your-link',style='text-decoration: none;') 0583206954
+            li.media
+              a.white(href='#your-link',style='text-decoration: none;') oanhpham@gmail.com
+        // end of text-container
+      // end of col
+      .col-md-2
+        .text-container
+          h4(style='color:#d4b32f;') Services
+          ul.list-unstyled.li-space-lg
+            li
+              a.white(href='#your-link',style='text-decoration: none;') Cake service
+            li
+              a.white(href='#your-link',style='text-decoration: none;') Dink service
+            
+        // end of text-container
+      // end of col
+    // end of row
+  // end of container

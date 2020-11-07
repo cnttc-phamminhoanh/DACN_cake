@@ -1,8 +1,35 @@
 extends ./layouts/common.pug
+block preloader
+	include ./layouts/preloader.pug
 block nav
 	include ./layouts/nav.pug
-block content
-	h1 Hello #{name}
-	a(href='/users') Users List 	
+block header
+	include ./layouts/header.pug
+block intro
+	include ./layouts/intro.pug
+block description
+	include ./layouts/description.pug
+block services
+	include ./layouts/services.pug
+block details1
+	include ./layouts/details1.pug
+block details2
+	include ./layouts/details2.pug
+block testimonials
+	include ./layouts/testimonials.pug
+block callme
+	include ./layouts/callme.pug	
+block projects
+	include ./layouts/projects.pug
+block lightbox
+	include ./layouts/lightbox.pug
+block team
+	include ./layouts/team.pug
+block about
+	include ./layouts/about.pug
+block contact
+	include ./layouts/contact.pug						
 block footer
-	include ./layouts/footer.pug			
+	include ./layouts/footer.pug
+
+

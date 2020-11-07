@@ -1,33 +1,40 @@
-html
-	head
-		meta(charset='utf-8')
-		meta(name='viewport', content='width=device-width, initial-scale=1')
-		title Login Form with validation using JQuery
-		link(rel="stylesheet",href="/styles/login.css")
-		script(src='https://code.jquery.com/jquery-3.5.1.slim.min.js', integrity='sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj', crossorigin='anonymous')
-		link(rel="stylesheet",href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" )
-		script(src='https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js', integrity='sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV', crossorigin='anonymous')
-		script(type='text/javascript', src='/js/index.js')
-	body
-		.container-fluid.bg
-			.row.justify-content-center
-				.col-md-3.col-sm-6.col-xs-12.row-container
-					form(action="/auth/login",method="POST")
-						h1 Login with your information
-						if error 
-							.alert.alert-danger=error
-						.form-group
-							label(for='email') Email address
-							input#email.form-control(name="email",type='email', placeholder='Enter email',value=values?values.email:"")
-							p.emailError
-						.form-group
-							label.label(for='password') Password
-							input#password.form-control(name="password",type='password', placeholder='Password',value=values?values.password:"")
-							p.passwordError
-						.form-check
-							input#rememberMe.form-check-input(type='checkbox')
-							label.form-check-label(for='rememberMe') Check me out
-							
-						button.btn.btn-success.btn-block.my-3 Login			
-		
-					
+extends ../layouts/khunglogin.pug
+block preloader
+	include ../layouts/preloader.pug 
+block nav
+	nav.navbar.navbar-expand-md.navbar-dark.navbar-custom.fixed-top
+		a.navbar-brand.logo-image(href='/')
+			img(src='http://localhost:3000/images/logo.svg', alt='alternative')
+		button.navbar-toggler(type='button', data-toggle='collapse', data-target='#navbarsExampleDefault', aria-controls='navbarsExampleDefault', aria-expanded='false', aria-label='Toggle navigation')
+			span.navbar-toggler-awesome.fas.fa-bars
+			span.navbar-toggler-awesome.fas.fa-times
+		#navbarsExampleDefault.collapse.navbar-collapse
+			ul.navbar-nav.ml-auto
+				li.nav-item
+					a.nav-link.page-scroll(href='http://localhost:3000/#header') Trang chủ 
+						span.sr-only (current)
+				li.nav-item
+					a.nav-link.page-scroll(href='http://localhost:3000/#intro') Giới thiệu
+				li.nav-item
+					a.nav-link.page-scroll(href='http://localhost:3000/#services') Dịch vụ
+				li.nav-item
+					a.nav-link.page-scroll(href='http://localhost:3000/#callMe') Gọi điện
+				li.nav-item
+					a.nav-link.page-scroll(href='http://localhost:3000/#projects') Sản phẩm
+				li.nav-item.dropdown
+					a#navbarDropdown.nav-link.dropdown-toggle.page-scroll(href='http://localhost:3000/#about', role='button', aria-haspopup='true', aria-expanded='false') Thêm
+					.dropdown-menu(aria-labelledby='navbarDropdown')
+						a.dropdown-item(href='terms-conditions.html')
+							span.item-text Điều khoản, Điều kiện
+						.dropdown-items-divide-hr
+						a.dropdown-item(href='privacy-policy.html')
+							span.item-text Chính sách bảo mật
+				li.nav-item
+					a.nav-link.page-scroll(href='http://localhost:3000/#contact') Li&ecirc;n h&#x1EC7;
+			span.nav-item.social-icons
+				span.fa-stack
+					a.lo(href='/account/register',style='margin-left:8px;') Register 	 				
+block contentLogin
+	include ../layouts/contentLogin.pug
+block footer
+	include ../layouts/footer.pug
