@@ -1,40 +1,40 @@
 extends ../layouts/khunglogin.pug
 block preloader
 	include ../layouts/preloader.pug 
-block nav
-	nav.navbar.navbar-expand-md.navbar-dark.navbar-custom.fixed-top
-		a.navbar-brand.logo-image(href='/')
-			img(src='http://localhost:3000/images/logo.svg', alt='alternative')
-		button.navbar-toggler(type='button', data-toggle='collapse', data-target='#navbarsExampleDefault', aria-controls='navbarsExampleDefault', aria-expanded='false', aria-label='Toggle navigation')
-			span.navbar-toggler-awesome.fas.fa-bars
-			span.navbar-toggler-awesome.fas.fa-times
-		#navbarsExampleDefault.collapse.navbar-collapse
-			ul.navbar-nav.ml-auto
-				li.nav-item
-					a.nav-link.page-scroll(href='http://localhost:3000/#header') Trang chủ 
-						span.sr-only (current)
-				li.nav-item
-					a.nav-link.page-scroll(href='http://localhost:3000/#intro') Giới thiệu
-				li.nav-item
-					a.nav-link.page-scroll(href='http://localhost:3000/#services') Dịch vụ
-				li.nav-item
-					a.nav-link.page-scroll(href='http://localhost:3000/#callMe') Gọi điện
-				li.nav-item
-					a.nav-link.page-scroll(href='http://localhost:3000/#projects') Sản phẩm
-				li.nav-item.dropdown
-					a#navbarDropdown.nav-link.dropdown-toggle.page-scroll(href='http://localhost:3000/#about', role='button', aria-haspopup='true', aria-expanded='false') Thêm
-					.dropdown-menu(aria-labelledby='navbarDropdown')
-						a.dropdown-item(href='terms-conditions.html')
-							span.item-text Điều khoản, Điều kiện
-						.dropdown-items-divide-hr
-						a.dropdown-item(href='privacy-policy.html')
-							span.item-text Chính sách bảo mật
-				li.nav-item
-					a.nav-link.page-scroll(href='http://localhost:3000/#contact') Li&ecirc;n h&#x1EC7;
-			span.nav-item.social-icons
-				span.fa-stack
-					a.lo(href='/account/register',style='margin-left:8px;') Register 	 				
+//- block nav
+//- 	nav.navbar.navbar-expand-md.navbar-dark.navbar-custom.fixed-top
+//- 		a.navbar-brand.logo-image(href='/')
+//- 			img(src='http://localhost:3000/images/logo.svg', alt='alternative')
+//- 		button.navbar-toggler(type='button', data-toggle='collapse', data-target='#navbarsExampleDefault', aria-controls='navbarsExampleDefault', aria-expanded='false', aria-label='Toggle navigation')
+//- 			span.navbar-toggler-awesome.fas.fa-bars
+//- 			span.navbar-toggler-awesome.fas.fa-times
+//- 		#navbarsExampleDefault.collapse.navbar-collapse
+//- 			ul.navbar-nav.ml-auto
+//- 				li.nav-item
+//- 					a.nav-link.page-scroll(href='http://localhost:3000/#header') Trang chủ 
+//- 						span.sr-only (current)
+//- 				li.nav-item
+//- 					a.nav-link.page-scroll(href='http://localhost:3000/#intro') Giới thiệu
+//- 				li.nav-item
+//- 					a.nav-link.page-scroll(href='http://localhost:3000/#services') Dịch vụ
+//- 				li.nav-item
+//- 					a.nav-link.page-scroll(href='http://localhost:3000/#callMe') Gọi điện
+//- 				li.nav-item
+//- 					a.nav-link.page-scroll(href='http://localhost:3000/#projects') Sản phẩm
+//- 				li.nav-item.dropdown
+//- 					a#navbarDropdown.nav-link.dropdown-toggle.page-scroll(href='http://localhost:3000/#about', role='button', aria-haspopup='true', aria-expanded='false') Thêm
+//- 					.dropdown-menu(aria-labelledby='navbarDropdown')
+//- 						a.dropdown-item(href='terms-conditions.html')
+//- 							span.item-text Điều khoản, Điều kiện
+//- 						.dropdown-items-divide-hr
+//- 						a.dropdown-item(href='privacy-policy.html')
+//- 							span.item-text Chính sách bảo mật
+//- 				li.nav-item
+//- 					a.nav-link.page-scroll(href='http://localhost:3000/#contact') Li&ecirc;n h&#x1EC7;
+//- 			span.nav-item.social-icons
+//- 				span.fa-stack
+//- 					a.lo(href='/account/register',style='margin-left:8px;') Register 	 				
 block contentLogin
-	include ../layouts/contentLogin.pug
-block footer
-	include ../layouts/footer.pug
+	include ../layouts/contentLogin1.pug
+//- block footer
+//- 	include ../layouts/footer.pug

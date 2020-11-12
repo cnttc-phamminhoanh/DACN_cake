@@ -1,0 +1,35 @@
+extends ../layouts/khungadmin.pug
+block preloader
+	include ../layouts/preloader.pug
+block navbar
+	include ../users/navbar.pug
+block userList
+	
+				.col-md-3.col-sm-6.col-xs-12.row-container
+					form(action="#",method="POST")
+						h1 Edit user
+						if error 
+							.alert.alert-danger=error
+						.form-group
+							label(for='email') Name 
+							input#email.form-control(name="name",type='email',value=values?values.email:"")
+							p.emailError
+						.form-group
+							label(for='email') Email 
+							input#email.form-control(name="email",type='email',value=values?values.email:"")
+							p.emailError
+						.form-group
+							label.label(for='password') Old
+							input#password.form-control(name="old",type='text',value=values?values.password:"")
+							p.passwordError
+						.form-group
+							label.label(for='password') Address
+							input#password.form-control(name="address",type='text',value=values?values.password:"")
+						.form-group
+							label.label(for='password') Idetity Card
+							input#password.form-control(name="Idetitycard",type='text',value=values?values.password:"")
+						.form-group
+							label.label(for='password') Phone
+							input#password.form-control(name="phone",type='text',value=values?values.password:"")
+							
+						button.btn.btn-success.btn-block.my-3 Save	

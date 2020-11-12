@@ -1,0 +1,47 @@
+nav.navbar.navbar-expand-md.navbar-dark.navbar-custom
+	button.navbar-toggler(type='button', data-toggle='collapse', data-target='#navbarsExampleDefault', aria-controls='navbarsExampleDefault', aria-expanded='false', aria-label='Toggle navigation')
+		span.navbar-toggler-awesome.fas.fa-bars
+		span.navbar-toggler-awesome.fas.fa-times
+	#navbarsExampleDefault.collapse.navbar-collapse
+		ul.navbar-nav.ml-auto
+			if user
+				li.nav-item
+					a.nav-link.page-scroll(href='#',style='color:black;')= user
+				li.nav-item
+					a.nav-link.page-scroll(href='/logout',style='color:black;') Logout
+if detailUser					
+	h1 View user
+	br
+	p
+		b Name :
+		span &nbsp;
+		span= detailUser.name
+	p
+		b Old :
+		span &nbsp;
+		span= detailUser.old
+	p
+		b Address :
+		span &nbsp;
+		span= detailUser.address
+	p
+		b Phone :
+		span &nbsp;
+		span= detailUser.phone
+	p
+		b Identity Card :
+		span &nbsp;
+		span= detailUser.identitycard
+	p
+		b Account Id :
+		span &nbsp;
+		span= detailUser.account_id	
+	if accountuser	
+		p
+			b Email :
+			span &nbsp;
+			span= accountuser.email
+		p
+			b Password :
+			span &nbsp;
+			span= accountuser.password				

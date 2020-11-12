@@ -1,12 +1,16 @@
-var db = require('../db.js');	
+// var db = require('../db.js');	
 
-var shortid = require('shortid');
+var Account = require('../models/account.model.js');
 
-module.exports.index = function(req,res){
-	res.render('users/index.pug',{
-		users : db.get('users').value()
-	});
-};
+var User = require('../models/user.model.js');
+
+// var shortid = require('shortid');
+
+// module.exports.index = function(req,res){
+// 	res.render('users/index.pug',{
+// 		users : db.get('users').value()
+// 	});
+// };
 
 module.exports.search = function(req,res){
 	var q = req.query.q;
@@ -24,12 +28,42 @@ module.exports.create = function(req,res){
 	res.render('users/create.pug');
 };
 
+// module.exports.get = function(req,res){
+// 	var id = req.params.id;
+// 	var user = db.get('users').find({id: id}).value();
+// 	res.render('users/view',{
+// 		user : user
+// 	});
+// };
+
 module.exports.get = function(req,res){
-	var id = req.params.id;
-	var user = db.get('users').find({id: id}).value();
-	res.render('users/view',{
-		user : user
-	});
+
+	//var id = req.params.id;
+
+	var ObjectId = (require('mongoose').Types.ObjectId);
+
+	Account.find({_id:new ObjectId(req.signedCookies.userId)}).then(function(data){
+		if(data.length > 0){
+			user = data[0].email;
+		}
+		User.find({_id:new ObjectId(req.params.id)}).then(function(data1){
+			if(data1.length > 0){
+				detailUser = data1[0];
+			}
+			Account.find({_id:new ObjectId(data1[0].account_id)}).then(function(data2){
+				if(data2.length > 0){
+					accountuser = data2[0];
+				}
+				res.render('users/view.pug',{
+					user : user,
+					detailUser : detailUser,
+					accountuser : accountuser
+				});
+
+			});
+		
+		});
+	});	
 };
 
 module.exports.postCreate = function(req,res){
@@ -38,4 +72,31 @@ module.exports.postCreate = function(req,res){
 	db.get('users').push(req.body).write();
 	res.redirect('/users');
 	//console.log(res.locals);
+};
+
+module.exports.edit = function(req,res){
+	var ObjectId = (require('mongoose').Types.ObjectId);
+
+	Account.find({_id:new ObjectId(req.signedCookies.userId)}).then(function(data){
+		if(data.length > 0){
+			user = data[0].email;
+		}
+		User.find({_id:new ObjectId(req.params.id)}).then(function(data1){
+			if(data1.length > 0){
+				detailUser = data1[0];
+			}
+			Account.find({_id:new ObjectId(data1[0].account_id)}).then(function(data2){
+				if(data2.length > 0){
+					accountuser = data2[0];
+				}
+				res.render('users/edit.pug',{
+					user : user,
+					detailUser : detailUser,
+					accountuser : accountuser
+				});
+
+			});
+		
+		});
+	});	
 };

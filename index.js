@@ -18,6 +18,8 @@ var loggedRouter = require('./routes/logged.route.js');
 
 var logoutRouter = require('./routes/logout.route.js');
 
+var userRoute = require('./routes/user.route.js');
+
 var authMiddleware = require('./middlewares/auth.middleware.js');
 
 var app = express();
@@ -41,6 +43,8 @@ app.get('/',function(req,res){
 });
 
 app.use('/auth',authRouter);
+
+app.use('/users',authMiddleware.requireAuth,userRoute);
 
 app.use('/account',registerRouter);
 

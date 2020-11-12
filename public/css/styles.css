@@ -2449,10 +2449,14 @@ a:hover.back-to-top {
 /* end of min-width width 1200px */
 
 a.lo{
-	color:#fff !important;
+	color:#fff;
 	text-decoration: none !important;
 }
 a.lo:hover{
 	color:#ffc107 !important;
 	transition: 0.7s !important;
+}
+.inhover:hover{
+	border-color: #fff !important;
+	padding : 10px !important;
 }

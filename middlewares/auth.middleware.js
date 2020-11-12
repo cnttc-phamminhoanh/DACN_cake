@@ -19,6 +19,7 @@ module.exports.requireAuth = function(req,res,next){
 };
 module.exports.requireCustomer = function(req,res,next){
 	if(res.locals.user.role === 0){
+
 		next();
 	}
 	else{
@@ -27,6 +28,7 @@ module.exports.requireCustomer = function(req,res,next){
 };
 module.exports.requireEmployee = function(req,res,next){
 	if(res.locals.user.role === 1){
+		
 		next();
 	}
 	else{
@@ -35,6 +37,7 @@ module.exports.requireEmployee = function(req,res,next){
 };
 module.exports.requireAdmin = function(req,res,next){
 	if(res.locals.user.role === 2){
+		
 		next();
 	}
 	else{

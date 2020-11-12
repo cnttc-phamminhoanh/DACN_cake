@@ -1,0 +1,36 @@
+nav.navbar.navbar-expand-md.navbar-dark.navbar-custom
+	form(action='/users/search', method='GET', class="d-flex",style='margin-top:17px;')
+		input(class="form-control",type='text',name='q',value=key)
+		button(class="btn btn-danger ml-2") Search
+	button.navbar-toggler(type='button', data-toggle='collapse', data-target='#navbarsExampleDefault', aria-controls='navbarsExampleDefault', aria-expanded='false', aria-label='Toggle navigation')
+		span.navbar-toggler-awesome.fas.fa-bars
+		span.navbar-toggler-awesome.fas.fa-times
+	#navbarsExampleDefault.collapse.navbar-collapse
+		ul.navbar-nav.ml-auto
+			if user
+				li.nav-item
+					a.nav-link.page-scroll(href='#',style='color:black;')= user
+				li.nav-item
+					a.nav-link.page-scroll(href='/logout',style='color:black;') Logout	
+			//- span.nav-item.social-icons
+			//- 	span.fa-stack
+			//- 		a.lo(href='/logout',style='color:black;margin-left:8px;') Logout
+
+table.table
+	tr
+		th Name
+		th Old
+		th Address
+		th Actions
+
+	each user in userList 
+		tr
+			td(style="line-height:40px;")=user.name
+			//- td
+			//- 	img(src="http://localhost:3000/"+user.avatar,width="40",height="40",style="image-rendering: unset;object-fit: fill;")
+			td(style="line-height:40px;")=user.old 
+			td(style="line-height:40px;")=user.address
+			td
+				a.btn.btn-info(href='/users/'+user.id) View
+				span 
+					a.btn.btn-danger(href='/users/edit/'+user.id) Edit
