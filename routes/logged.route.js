@@ -4,6 +4,8 @@ var controllerLogged = require('../controllers/logged.controller.js');
 
 var requirePermission = require('../middlewares/auth.middleware.js')
 
+//var controllerUser = require('../controllers/user.controller.js');
+
 var router = express.Router();
 
 router.get('/',requirePermission.requireCustomer,controllerLogged.customer);

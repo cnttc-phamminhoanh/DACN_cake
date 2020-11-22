@@ -4,32 +4,29 @@ block preloader
 block navbar
 	include ../users/navbar.pug
 block userList
-	
-				.col-md-3.col-sm-6.col-xs-12.row-container
-					form(action="#",method="POST")
-						h1 Edit user
-						if error 
-							.alert.alert-danger=error
-						.form-group
-							label(for='email') Name 
-							input#email.form-control(name="name",type='email',value=values?values.email:"")
-							p.emailError
-						.form-group
-							label(for='email') Email 
-							input#email.form-control(name="email",type='email',value=values?values.email:"")
-							p.emailError
-						.form-group
-							label.label(for='password') Old
-							input#password.form-control(name="old",type='text',value=values?values.password:"")
-							p.passwordError
-						.form-group
-							label.label(for='password') Address
-							input#password.form-control(name="address",type='text',value=values?values.password:"")
-						.form-group
-							label.label(for='password') Idetity Card
-							input#password.form-control(name="Idetitycard",type='text',value=values?values.password:"")
-						.form-group
-							label.label(for='password') Phone
-							input#password.form-control(name="phone",type='text',value=values?values.password:"")
-							
-						button.btn.btn-success.btn-block.my-3 Save	
+	.col-md-5.col-sm-6.col-xs-12.row-container
+		form(action="/users/editUser",method="POST")
+			h1 Edit user
+			if detailUser 
+				.form-group
+					label(for='name') Name
+					input#name.form-control(name="name",type='text',value=detailUser?detailUser.name:"")
+				.form-group
+					label(for='email') Email
+					input#email.form-control(name="email",type='email',value=accountuser?accountuser.email:"")
+				.form-group
+					label.label(for='old') Old
+					input#old.form-control(name="old",type='text',value=detailUser?detailUser.old:"")
+				.form-group
+					label.label(for='address') Address
+					input#address.form-control(name="address",type='text',value=detailUser?detailUser.address:"")
+				.form-group
+					label.label(for='identitycard') Idetity Card
+					input#identitycard.form-control(name="identitycard",type='text',value=detailUser?detailUser.identitycard:"")
+				.form-group
+					label.label(for='phone') Phone
+					input#phone.form-control(name="phone",type='text',value=detailUser?detailUser.phone:"")
+				.form-group(style='display:none;')
+					label.label(for='phone') Userid
+					input#userid.form-control(name="userid",type='text',value=detailUser?detailUser.account_id:"")
+				button.btn.btn-success.btn-block.my-3 Save			

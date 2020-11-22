@@ -33,8 +33,8 @@
                         input#password.form-control(name="password",type='password', placeholder='Password',value=values?values.password:"")
                         p.passwordError
                     .form-check
-                        input#rememberMe.form-check-input(type='checkbox')
-                        label.form-check-label(style='color: #fff;', for='rememberMe') Check me out
+                        if error
+                            h6(style='color: #fff;')= error
                     button.btn.btn-success.btn-block.my-3(style='background-color: #17a2b8;border: 1px solid #fff ;', type='submit') Login
     .bubbles
         img(src='../images/bubble.png', alt='')

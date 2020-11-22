@@ -8,25 +8,36 @@ var controller = require('../controllers/user.controller.js');
 
 //var validate = require('../validate/user.validate.js');
 
-var upload = multer({ dest: './public/uploads/' });
-
 var router = express.Router();
-
-//router.get('/',controller.index);
 
 // router.get('/cookie',function(req,res){
 // 	res.cookie('users-id',41121);
 // 	res.send('Hello');
 // });
 
-//router.get('/search',controller.search);
+var storage = multer.diskStorage({
+	destination: function(req,res,callback){
+		callback(null,'./public/uploads/');
+	},
+	filename: function(req,file,callback){
+		callback(null,file.originalname);
+	}
+});
 
-//router.get('/create',controller.create);
+var upload = multer({storage: storage});
 
-router.get('/:id',controller.get);
+router.get('/index',requirePermission.requireAdmin,controller.index);
+
+router.get('/create',controller.create);
+
+router.get('/index/:id',requirePermission.requireAdmin,controller.get);
 
 router.get('/edit/:id',controller.edit);
 
-//router.post('/create',upload.single('avatar'),validate.postCreate,controller.postCreate);
+router.get('/search',controller.search);
+
+router.post('/editUser',controller.editUser);
+
+router.post('/create',upload.single('avatar'),controller.postCreate);
 
 module.exports = router;

@@ -13,6 +13,12 @@ if detailUser
 	h1 View user
 	br
 	p
+		b Avata :
+		span &nbsp;
+		span
+			img(style="width:40px;height:40px;image-rendering: unset;object-fit: fill;",
+			src=detailUser.avata?detailUser.avata:"http://localhost:3000/uploads/user.jfif")
+	p
 		b Name :
 		span &nbsp;
 		span= detailUser.name

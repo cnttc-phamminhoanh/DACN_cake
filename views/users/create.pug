@@ -1,5 +1,9 @@
-extends ../layouts/common.pug
-block content
+extends ../layouts/khungadmin.pug
+block preloader
+	include ../layouts/preloader.pug
+block navbar
+	include ../users/navbar.pug
+block userList
 	h1 Create user
 	if errors 
 		each error in errors

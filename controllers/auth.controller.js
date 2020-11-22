@@ -32,7 +32,7 @@ module.exports.postLogin = function(req,res){
 						res.redirect('/logged/employee');
 					}
 					else{
-						res.redirect('/logged/admin');
+						res.redirect('/users/index');
 					}
 					return;
 				}

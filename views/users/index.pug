@@ -18,6 +18,7 @@ nav.navbar.navbar-expand-md.navbar-dark.navbar-custom
 
 table.table
 	tr
+		th Avata
 		th Name
 		th Old
 		th Address
@@ -25,12 +26,12 @@ table.table
 
 	each user in userList 
 		tr
+			td
+				img(style="width:40px;height:40px;image-rendering: unset;object-fit: fill;",src=user.avata?user.avata:"http://localhost:3000/uploads/user.jfif")
 			td(style="line-height:40px;")=user.name
-			//- td
-			//- 	img(src="http://localhost:3000/"+user.avatar,width="40",height="40",style="image-rendering: unset;object-fit: fill;")
 			td(style="line-height:40px;")=user.old 
 			td(style="line-height:40px;")=user.address
 			td
-				a.btn.btn-info(href='/users/'+user.id) View
+				a.btn.btn-info(href='/users/index/'+user.account_id) View
 				span 
-					a.btn.btn-danger(href='/users/edit/'+user.id) Edit
+					a.btn.btn-danger(href='/users/edit/'+user.account_id) Edit

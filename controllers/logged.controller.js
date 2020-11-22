@@ -18,6 +18,7 @@ module.exports.employee = function(req,res){
 		});
 	});	
 };
+
 module.exports.admin = function(req,res){
 	var ObjectId = (require('mongoose').Types.ObjectId);
 
@@ -36,8 +37,10 @@ module.exports.admin = function(req,res){
 			user : user,
 			userList : userList
 		});
+		//console.log(userList);
 	});	
 };
+
 module.exports.customer = function(req,res){
 	var ObjectId = (require('mongoose').Types.ObjectId);
 

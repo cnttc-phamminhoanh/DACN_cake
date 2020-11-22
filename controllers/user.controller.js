@@ -6,21 +6,59 @@ var User = require('../models/user.model.js');
 
 // var shortid = require('shortid');
 
-// module.exports.index = function(req,res){
-// 	res.render('users/index.pug',{
-// 		users : db.get('users').value()
-// 	});
-// };
+module.exports.index = function(req,res){
+	var ObjectId = (require('mongoose').Types.ObjectId);
+
+	var user = ''; 
+
+	User.find({}).then(function(data){
+		userList = data;
+	});
+	
+	Account.find({_id:new ObjectId(req.signedCookies.userId)}).then(function(data){
+		if(data.length > 0){
+			user = data[0].email;
+		}
+		
+		res.render('logged/admin.pug',{
+			user : user,
+			userList : userList
+		});
+		//console.log(userList);
+	});	
+};
 
 module.exports.search = function(req,res){
+
+	// var matchedUsers = db.get('users').value().filter(function(user){
+	// 	return user.name.toLowerCase().indexOf(q.toLowerCase()) != -1;
+	// });
+
+	var ObjectId = (require('mongoose').Types.ObjectId);
+
 	var q = req.query.q;
-	var matchedUsers = db.get('users').value().filter(function(user){
-		return user.name.toLowerCase().indexOf(q.toLowerCase()) != -1;
+
+	var user = ''; 
+	
+	Account.find({_id:new ObjectId(req.signedCookies.userId)}).then(function(data){
+		if(data.length > 0){
+			user = data[0].email;
+		}
+		
+		User.find({}).then(function(datas){
+			var matchedUsers = datas.filter(function(user){
+				return user.name.toLowerCase().indexOf(q.toLowerCase()) != -1;
+			});
+
+			res.render('users/search.pug',{
+				user : user,
+				userList : matchedUsers,
+				key : q
+			});
+
+		});	
 	});
-	res.render('users/index.pug',{
-		users : matchedUsers,
-		key : q
-	})
+
 };
 
 module.exports.create = function(req,res){
@@ -28,29 +66,18 @@ module.exports.create = function(req,res){
 	res.render('users/create.pug');
 };
 
-// module.exports.get = function(req,res){
-// 	var id = req.params.id;
-// 	var user = db.get('users').find({id: id}).value();
-// 	res.render('users/view',{
-// 		user : user
-// 	});
-// };
-
 module.exports.get = function(req,res){
-
-	//var id = req.params.id;
-
 	var ObjectId = (require('mongoose').Types.ObjectId);
 
 	Account.find({_id:new ObjectId(req.signedCookies.userId)}).then(function(data){
 		if(data.length > 0){
 			user = data[0].email;
 		}
-		User.find({_id:new ObjectId(req.params.id)}).then(function(data1){
+		User.find({account_id:new RegExp(req.params.id)}).then(function(data1){
 			if(data1.length > 0){
 				detailUser = data1[0];
 			}
-			Account.find({_id:new ObjectId(data1[0].account_id)}).then(function(data2){
+			Account.find({userid:new RegExp(data1[0].account_id)}).then(function(data2){
 				if(data2.length > 0){
 					accountuser = data2[0];
 				}
@@ -59,7 +86,6 @@ module.exports.get = function(req,res){
 					detailUser : detailUser,
 					accountuser : accountuser
 				});
-
 			});
 		
 		});
@@ -67,10 +93,11 @@ module.exports.get = function(req,res){
 };
 
 module.exports.postCreate = function(req,res){
-	req.body.id = shortid.generate();
+	//req.body.id = shortid.generate();
 	req.body.avatar = (req.file.destination + req.file.filename).split("/").slice(2).join("/");
-	db.get('users').push(req.body).write();
-	res.redirect('/users');
+	//console.log(req.body);
+	//db.get('users').push(req.body).write();
+	//res.redirect('/users');
 	//console.log(res.locals);
 };
 
@@ -81,11 +108,11 @@ module.exports.edit = function(req,res){
 		if(data.length > 0){
 			user = data[0].email;
 		}
-		User.find({_id:new ObjectId(req.params.id)}).then(function(data1){
+		User.find({account_id:new RegExp(req.params.id)}).then(function(data1){
 			if(data1.length > 0){
 				detailUser = data1[0];
 			}
-			Account.find({_id:new ObjectId(data1[0].account_id)}).then(function(data2){
+			Account.find({userid:new RegExp(data1[0].account_id)}).then(function(data2){
 				if(data2.length > 0){
 					accountuser = data2[0];
 				}
@@ -94,9 +121,28 @@ module.exports.edit = function(req,res){
 					detailUser : detailUser,
 					accountuser : accountuser
 				});
-
 			});
 		
 		});
 	});	
+};
+
+module.exports.editUser = function(req,res){
+	var ObjectId = (require('mongoose').Types.ObjectId);
+
+	var userEdit = {
+		name : req.body.name,
+		old : req.body.old,
+		address : req.body.address,
+		identitycard : req.body.identitycard,
+		phone : req.body.phone,
+	}
+
+	var userEmail = {
+		email : req.body.email,
+	}
+
+	User.findOneAndUpdate({account_id:req.body.userid},userEdit).then(function(){
+		res.redirect('/logged/admin');
+	});
 };

@@ -1,4 +1,5 @@
 var Account = require('../models/account.model.js');
+
 module.exports.requireAuth = function(req,res,next){
 	if(!req.signedCookies.userId){
 		res.redirect('/auth/login');
@@ -17,6 +18,33 @@ module.exports.requireAuth = function(req,res,next){
 		next();
 	});
 };
+
+module.exports.checkLogin = function(req,res,next){
+	var ObjectId = (require('mongoose').Types.ObjectId);
+
+	if(req.signedCookies.userId)
+	{
+		Account.find({_id:new ObjectId(req.signedCookies.userId)}).then(function(data){
+			if(data.length>0){
+		
+				if(data[0].role===0){
+					res.redirect('/logged/');
+				}
+				else if(data[0].role===1){
+					res.redirect('/logged/employee');
+				}
+				else{
+					res.redirect('/users/index');
+				}
+			}
+		});
+		return;
+	}
+	else{
+		next();
+	}
+}
+
 module.exports.requireCustomer = function(req,res,next){
 	if(res.locals.user.role === 0){
 

@@ -6,9 +6,12 @@ var userSchema = new mongoose.Schema({
 	old:Number,
 	address:String,
 	identitycard:String,
-	// avata:String,
-	phone:Number
-});
+	avata:String,
+	phone:String
+	},
+	{
+		versionKey: false
+	});
 
 var User = mongoose.model('User',userSchema,'users');
 
