@@ -7,9 +7,9 @@ nav.navbar.navbar-expand-md.navbar-dark.navbar-custom
 		span.navbar-toggler-awesome.fas.fa-times
 	#navbarsExampleDefault.collapse.navbar-collapse
 		ul.navbar-nav.ml-auto
-			if user
+			if userAc
 				li.nav-item
-					a.nav-link.page-scroll(href='#',style='color:black;')= user
+					a.nav-link.page-scroll(href='#',style='color:black;')= userAc.email
 				li.nav-item
 					a.nav-link.page-scroll(href='/logout',style='color:black;') Logout	
 			//- span.nav-item.social-icons
@@ -27,11 +27,13 @@ table.table
 	each user in userList 
 		tr
 			td
-				img(style="width:40px;height:40px;image-rendering: unset;object-fit: fill;",src=user.avata?user.avata:"http://localhost:3000/uploads/user.jfif")
-			td(style="line-height:40px;")=user.name
+				img(style="width:40px;height:40px;image-rendering: unset;object-fit: fill;",src="http://localhost:3000/"+(user.avata?user.avata:"user.jfiif"))
+			td(style="line-height:40px;")=user.name?user.name:user.account_id
 			td(style="line-height:40px;")=user.old 
-			td(style="line-height:40px;")=user.address
+			td(style="line-height:40px;")=user.address?user.address:"-Change-"
 			td
 				a.btn.btn-info(href='/users/index/'+user.account_id) View
 				span 
-					a.btn.btn-danger(href='/users/edit/'+user.account_id) Edit
+					a.btn.btn-success(href='/users/edit/'+user.account_id) Edit
+				span 
+					a.btn.btn-danger(href='/users/deleteUser/'+user.account_id) Delete	

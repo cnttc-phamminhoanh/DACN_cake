@@ -1,21 +1,6 @@
 extends ../layouts/khungadmin.pug
 block preloader
 	include ../layouts/preloader.pug
-//- block nav
-	//- nav.navbar.navbar-expand-md.navbar-dark.navbar-custom.fixed-top(style='background-color:black;')
-	//- 	a.navbar-brand.logo-image(href='/')
-	//- 		img(src='http://localhost:3000/images/logo.svg', alt='alternative')
-	//- 	button.navbar-toggler(type='button', data-toggle='collapse', data-target='#navbarsExampleDefault', aria-controls='navbarsExampleDefault', aria-expanded='false', aria-label='Toggle navigation')
-	//- 		span.navbar-toggler-awesome.fas.fa-bars
-	//- 		span.navbar-toggler-awesome.fas.fa-times
-	//- 	#navbarsExampleDefault.collapse.navbar-collapse
-	//- 		ul.navbar-nav.ml-auto
-	//- 			if user
-	//- 				li.nav-item
-	//- 					a.nav-link.page-scroll(href='#')= user
-	//- 		span.nav-item.social-icons
-	//- 			span.fa-stack
-	//- 				a.lo(href='/logout',style='margin-left:8px;') Logout
 block navbar
 	include ../users/navbar.pug					
 block userList

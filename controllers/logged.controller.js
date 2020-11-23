@@ -30,7 +30,7 @@ module.exports.admin = function(req,res){
 	
 	Account.find({_id:new ObjectId(req.signedCookies.userId)}).then(function(data){
 		if(data.length > 0){
-			user = data[0].email;
+			user = data[0];
 		}
 		
 		res.render('logged/admin.pug',{

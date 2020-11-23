@@ -17,7 +17,7 @@ module.exports.index = function(req,res){
 	
 	Account.find({_id:new ObjectId(req.signedCookies.userId)}).then(function(data){
 		if(data.length > 0){
-			user = data[0].email;
+			userAc = data[0];
 		}
 		
 		res.render('logged/admin.pug',{
@@ -130,12 +130,15 @@ module.exports.edit = function(req,res){
 module.exports.editUser = function(req,res){
 	var ObjectId = (require('mongoose').Types.ObjectId);
 
+	req.body.avatar = (req.file.destination + req.file.filename).split("/").slice(2).join("/");
+
 	var userEdit = {
 		name : req.body.name,
 		old : req.body.old,
 		address : req.body.address,
 		identitycard : req.body.identitycard,
 		phone : req.body.phone,
+		avata : req.body.avatar
 	}
 
 	var userEmail = {
@@ -143,6 +146,19 @@ module.exports.editUser = function(req,res){
 	}
 
 	User.findOneAndUpdate({account_id:req.body.userid},userEdit).then(function(){
-		res.redirect('/logged/admin');
+		Account.findOneAndUpdate({userid:req.body.userid},userEmail).then(function(){
+			res.redirect('/logged/admin');
+		});
 	});
 };
+
+module.exports.deleteUser = function(req,res){
+	//var ObjectId = (require('mongoose').Types.ObjectId);
+
+	User.findOneAndRemove({account_id:req.params.id}).then(function(){
+		Account.findOneAndRemove({userid:req.params.id}).then(function(){
+			res.redirect('/logged/admin');
+		});
+	});
+
+}
