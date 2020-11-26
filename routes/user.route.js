@@ -26,20 +26,20 @@ var storage = multer.diskStorage({
 
 var upload = multer({storage: storage});
 
-router.get('/index',requirePermission.requireAdmin,controller.index);
+router.get('/search',controller.search);
 
-router.get('/create',controller.create);
+router.get('/index',requirePermission.requireAdmin,controller.index);
 
 router.get('/index/:id',requirePermission.requireAdmin,controller.get);
 
 router.get('/edit/:id',controller.edit);
 
-router.get('/search',controller.search);
-
 router.post('/editUser',upload.single('avatar'),controller.editUser);
 
 router.get('/deleteUser/:id',requirePermission.requireAdmin,controller.deleteUser);
 
-router.post('/create',upload.single('avatar'),controller.postCreate);
+//router.get('/create',controller.create);
+
+//router.post('/create',upload.single('avatar'),controller.postCreate);
 
 module.exports = router;

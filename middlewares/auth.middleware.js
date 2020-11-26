@@ -72,3 +72,11 @@ module.exports.requireAdmin = function(req,res,next){
 		res.json('Not permission');
 	}
 };
+module.exports.requireAE = function(req,res,next){
+	if(res.locals.user.role > 0){
+		next();
+	}
+	else{
+		res.json('Not permission');
+	}
+};

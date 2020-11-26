@@ -10,7 +10,7 @@ var router = express.Router();
 
 router.get('/',requirePermission.requireCustomer,controllerLogged.customer);
 
-router.get('/employee',requirePermission.requireEmployee,controllerLogged.employee);
+router.get('/employee',requirePermission.requireAE,controllerLogged.employee);
 
 router.get('/admin',requirePermission.requireAdmin,controllerLogged.admin);
 

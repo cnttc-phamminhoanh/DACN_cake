@@ -20,6 +20,8 @@ var logoutRouter = require('./routes/logout.route.js');
 
 var userRoute = require('./routes/user.route.js');
 
+var cartRoute = require('./routes/cart.route.js');
+
 var authMiddleware = require('./middlewares/auth.middleware.js');
 
 var app = express();
@@ -51,6 +53,8 @@ app.use('/account',registerRouter);
 app.use('/logged',authMiddleware.requireAuth,loggedRouter);
 
 app.use('/logout',logoutRouter);
+
+app.use('/cart',authMiddleware.requireAuth,cartRoute)
 
 //app.use('/products',productRoute);
 

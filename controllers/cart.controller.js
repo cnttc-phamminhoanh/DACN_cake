@@ -19,3 +19,7 @@ module.exports.addToCart = function(req,res,next){
 	res.redirect('/products');
 };
 
+module.exports.get = function(req,res,next){
+	res.render('cart/cart.pug');
+};
+
