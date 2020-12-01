@@ -1,4 +1,6 @@
-// var db = require('../db.js');	
+// var db = require('../db.js');
+
+var fs = require('fs');	
 
 var Account = require('../models/account.model.js');
 
@@ -144,6 +146,11 @@ module.exports.editUser = function(req,res){
 	var userEmail = {
 		email : req.body.email,
 	}
+
+	fs.unlink('./public/uploads/9c889dad0266fd38a477.jpg',function(err){
+		if (err) throw err;
+		console.log('delete success')
+	});
 
 	User.findOneAndUpdate({account_id:req.body.userid},userEdit).then(function(){
 		Account.findOneAndUpdate({userid:req.body.userid},userEmail).then(function(){
