@@ -63,10 +63,6 @@ module.exports.search = function(req,res){
 
 };
 
-module.exports.create = function(req,res){
-	//console.log(req.cookies);
-	res.render('users/create.pug');
-};
 
 module.exports.get = function(req,res){
 	var ObjectId = (require('mongoose').Types.ObjectId);
@@ -94,14 +90,6 @@ module.exports.get = function(req,res){
 	});	
 };
 
-module.exports.postCreate = function(req,res){
-	//req.body.id = shortid.generate();
-	req.body.avatar = (req.file.destination + req.file.filename).split("/").slice(2).join("/");
-	//console.log(req.body);
-	//db.get('users').push(req.body).write();
-	//res.redirect('/users');
-	//console.log(res.locals);
-};
 
 module.exports.edit = function(req,res){
 	var ObjectId = (require('mongoose').Types.ObjectId);
@@ -132,27 +120,43 @@ module.exports.edit = function(req,res){
 module.exports.editUser = function(req,res){
 	var ObjectId = (require('mongoose').Types.ObjectId);
 
-	req.body.avatar = (req.file.destination + req.file.filename).split("/").slice(2).join("/");
+	var userEdit;
 
-	var userEdit = {
-		name : req.body.name,
-		old : req.body.old,
-		address : req.body.address,
-		identitycard : req.body.identitycard,
-		phone : req.body.phone,
-		avata : req.body.avatar
+	if(req.file){
+		//req.body.avatar = (req.file.destination + req.file.filename).split("/").slice(2).join("/");
+		req.body.avatar = req.file.filename;
+
+		userEdit = {
+			name : req.body.name,
+			old : req.body.old,
+			address : req.body.address,
+			identitycard : req.body.identitycard,
+			phone : req.body.phone,
+			avata : req.body.avatar
+		}
+		User.find({account_id:req.body.userid}).then(function(data){
+			//console.log(data);
+			fs.unlink('./public/uploads/'+data[0].avata,function(err){});
+		});
 	}
+	else{
+		userEdit = {
+			name : req.body.name,
+			old : req.body.old,
+			address : req.body.address,
+			identitycard : req.body.identitycard,
+			phone : req.body.phone
+		}
+	}
+
+	//console.log(userEdit);
 
 	var userEmail = {
 		email : req.body.email,
 	}
 
-	fs.unlink('./public/uploads/9c889dad0266fd38a477.jpg',function(err){
-		if (err) throw err;
-		console.log('delete success')
-	});
-
-	User.findOneAndUpdate({account_id:req.body.userid},userEdit).then(function(){
+	User.findOneAndUpdate({account_id:req.body.userid},userEdit).then(function(data){
+		//console.log(data);
 		Account.findOneAndUpdate({userid:req.body.userid},userEmail).then(function(){
 			res.redirect('/logged/admin');
 		});

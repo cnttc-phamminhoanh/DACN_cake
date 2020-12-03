@@ -38,8 +38,4 @@ router.post('/editUser',upload.single('avatar'),controller.editUser);
 
 router.get('/deleteUser/:id',requirePermission.requireAdmin,controller.deleteUser);
 
-//router.get('/create',controller.create);
-
-//router.post('/create',upload.single('avatar'),controller.postCreate);
-
 module.exports = router;

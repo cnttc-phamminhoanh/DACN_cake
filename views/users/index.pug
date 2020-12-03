@@ -27,7 +27,7 @@ table.table
 	each user in userList 
 		tr
 			td
-				img(style="width:40px;height:40px;image-rendering: unset;object-fit: fill;",src="http://localhost:3000/"+(user.avata !== ""?user.avata:"uploads/user.jfif"))
+				img(style="width:40px;height:40px;image-rendering: unset;object-fit: fill;",src="http://localhost:3000/uploads/"+(user.avata !== ""?user.avata:"user.jfif"))
 			td(style="line-height:40px;")=user.name?user.name:user.account_id
 			td(style="line-height:40px;")=user.old 
 			td(style="line-height:40px;")=user.address?user.address:"-Change-"
