@@ -24,6 +24,10 @@ var cartRoute = require('./routes/cart.route.js');
 
 var authMiddleware = require('./middlewares/auth.middleware.js');
 
+var Product = require('./models/product.model.js');
+
+var Salecake = require('./models/salecake.model.js');
+
 var app = express();
 
 app.set('view engine', 'pug');
@@ -41,7 +45,14 @@ app.use(express.static('public'));
 var port = 3000;
 
 app.get('/',function(req,res){
-	res.render('index.pug');
+	Product.find({}).then(function(data){
+		Salecake.find({}).then(function(data1){
+			res.render('index.pug',{
+				products:data,
+				salecakes:data1
+			});
+		})
+	});
 });
 
 app.use('/auth',authRouter);
@@ -55,6 +66,8 @@ app.use('/logged',authMiddleware.requireAuth,loggedRouter);
 app.use('/logout',logoutRouter);
 
 app.use('/cart',authMiddleware.requireAuth,cartRoute)
+
+app.use('/products',productRoute)
 
 //app.use('/products',productRoute);
 

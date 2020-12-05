@@ -13,7 +13,7 @@ module.exports.index = function(req,res){
 	// 	totalPage : totalPage
 	// });
 
-	Product.find().then(function(products){
+	Product.find({}).then(function(products){
 		var totalPage = Math.ceil((products.length)/perPage) || 1;  
 		res.render('products/index.pug',{
 			products : products.slice(start,end),
@@ -45,7 +45,8 @@ module.exports.search = function(req,res){
 		// 	key : q
 		// });
 		// return;
-	}else{
+	}
+	else{
 		res.render('products/index.pug',{
 			errors: [
 				'Require enter the search word.'
@@ -57,3 +58,12 @@ module.exports.search = function(req,res){
  	//    return text.replace(/[-[\]{}()*+?.,\\^$|#\s]/g, "\\$&");
 	// };
 };
+
+module.exports.getid = function(req,res){
+	var ObjectId = (require('mongoose').Types.ObjectId);
+	Product.find({_id:new ObjectId(req.params.id)}).then(function(data){
+		res.render('products/detailProduct.pug',{
+			product:data[0]
+		});
+	});
+}

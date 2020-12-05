@@ -11,6 +11,6 @@ var productSchema = new mongoose.Schema({
 	}
 );
 
-var Product = mongoose.model('Product',productSchema,'cakelist');
+var Salecake = mongoose.model('Salecake',productSchema,'saleCake');
 
-module.exports = Product;
+module.exports = Salecake;

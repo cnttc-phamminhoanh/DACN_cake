@@ -1,0 +1,43 @@
+extends ../layouts/khungadmin.pug
+block preloader
+	include ../layouts/preloader.pug
+block navbar
+	include ../users/navbar.pug					
+block userList
+	h1 
+		span.mr-3 Products		
+	if errors 
+		each error in errors
+			.alert.alert-danger=error	
+	.d-flex.align-items-center
+		form.ml-auto(action='/products/search', method='GET', class="d-flex")
+			input(class="form-control",type='text',name='q',value=key)
+			button(class="btn btn-primary ml-2") Search
+			
+	.d-flex.align-items-center.mt-5
+		div(class="form-group row")
+			if products
+				each product in products 
+					.col-sm-4.mb-5 
+						.card(style='width: 18rem;')
+							img.card-img-top(style='width: 18rem;height:230px;',src="http://localhost:3000/images/"+product.image, alt='...')
+							.card-body
+								h5.card-title=product.name
+								p.card-text=product.description
+								a.btn.btn-primary(href='/cart/add/' + product.id) Add to cart
+
+	nav(aria-label='Page navigation example')
+		ul.pagination
+			li.page-item
+				a.page-link(href='#') Previous
+			- var n = 1;	
+			while n <= totalPage
+				li.page-item
+					a.page-link(href='products?page='+n)= n++		
+			li.page-item
+				a.page-link(href='#') Next							
+
+				
+
+			
+			

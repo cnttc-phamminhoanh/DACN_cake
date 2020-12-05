@@ -8,21 +8,21 @@ block preloader
 			span.navbar-toggler-awesome.fas.fa-times
 		#navbarsExampleDefault.collapse.navbar-collapse
 			ul.navbar-nav.ml-auto
-				li.nav-item
-					a.nav-link.page-scroll(href='/cart/')
-						span 
-							i.fas.fa-shopping-cart
+				//- li.nav-item
+				//- 	a.nav-link.page-scroll(href='/cart/')
+				//- 		span 
+				//- 			i.fas.fa-shopping-cart
 				li.nav-item
 					a.nav-link.page-scroll(href='http://localhost:3000/') Trang chủ 
 						span.sr-only (current)
 				li.nav-item
-					a.nav-link.page-scroll(href='#intro') Giới thiệu
+					a.nav-link.page-scroll(href='http://localhost:3000/#intro') Giới thiệu
 				li.nav-item
-					a.nav-link.page-scroll(href='#services') Dịch vụ
+					a.nav-link.page-scroll(href='http://localhost:3000/#services') Dịch vụ
 				li.nav-item
-					a.nav-link.page-scroll(href='#callMe') Gọi điện
+					a.nav-link.page-scroll(href='http://localhost:3000/#callMe') Gọi điện
 				li.nav-item
-					a.nav-link.page-scroll(href='#projects') Sản phẩm
+					a.nav-link.page-scroll(href='http://localhost:3000/#projects') Sản phẩm
 				li.nav-item.dropdown
 					a#navbarDropdown.nav-link.dropdown-toggle.page-scroll(href='#about', role='button', aria-haspopup='true', aria-expanded='false') Th&ecirc;m
 					.dropdown-menu(aria-labelledby='navbarDropdown')
@@ -33,10 +33,27 @@ block preloader
 							span.item-text Chính sách bảo mật
 				li.nav-item
 					a.nav-link.page-scroll(href='#contact') Li&ecirc;n h&#x1EC7;
-			span.nav-item.social-icons
-				span.fa-stack
-					a.lo(href='/auth/login') Login
+			//- span.nav-item.social-icons
+			//- 	span.fa-stack
+			//- 		a.lo(href='/auth/login') Login
 	          
-				span.fa-stack
-					a.lo(href='/account/register',style='margin-left:8px;') Register
-block content 
+				//- span.fa-stack
+				//- 	a.lo(href='/account/register',style='margin-left:8px;') Register
+block content
+	h3(style="margin-top:150px;margin-bottom:20px;") Shopping Cart
+	table.table
+		tr
+			th Avata
+			th Name
+			th Number
+			th Total
+			th Actions
+		tr
+			td
+				img(style="width:40px;height:40px;image-rendering: unset;object-fit: fill;",src="http://localhost:3000/uploads/"+(user.avata !== ""?user.avata:"user.jfif"))
+			td(style="line-height:40px;") a
+			td(style="line-height:40px;") b
+			td(style="line-height:40px;") c
+			td
+				a.btn.btn-danger(href='/users/deleteUser/'+user.account_id) Delete
+			

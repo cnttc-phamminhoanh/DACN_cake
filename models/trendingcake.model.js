@@ -11,6 +11,6 @@ var productSchema = new mongoose.Schema({
 	}
 );
 
-var Product = mongoose.model('Product',productSchema,'cakelist');
+var Trendingcake = mongoose.model('Trendingcake',productSchema,'trendingCake');
 
-module.exports = Product;
+module.exports = Trendingcake;

@@ -1,0 +1,25 @@
+extends ../layouts/khungadmin.pug
+block preloader
+  include ../layouts/preloader.pug
+block navbar
+  include ../users/navbar.pug
+block userList 
+  #project-1.lightbox-basic.zoom-anim-dialog.mfp-hide
+    .row
+      //- button.mfp-close.x-button(title='Close (Esc)', type='button') &times;
+      .col-lg-8
+        img.img-fluid(style="height:400px !important;width:400px !important;",src='http://localhost:3000/images/'+product.image, alt='alternative')
+      .col-lg-4
+        h3=product.name
+        hr.line-heading
+        
+        p=product.content
+        h6 Price :   
+          p=product.price
+        //   | By offering the best professional services and quality products in the market. Don&apos;t hesitate and get in touch with us.
+        // .testimonial-container
+        //   p.testimonial-text
+        //     | Need a solid foundation for your business growth plans? Aria will help you manage sales and meet your current requirements.
+        //   p.testimonial-author General Manager
+        a.btn-solid-reg(href='#your-link') Add to card
+        a.btn-outline-reg.mfp-close.as-button(href='/#projects') BACK
