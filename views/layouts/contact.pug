@@ -49,18 +49,18 @@
       // end of col
       .col-lg-6
         // Contact Form
-        form#contactForm(data-toggle='validator', data-focus='false')
+        form(action='/contacts',method='POST',data-toggle='validator', data-focus='false')
           .form-group
-            input#cname.form-control-input(type='text', required='')
-            label.label-control(for='cname') Name
+            input#name.form-control-input(name='name',type='text', required='')
+            label.label-control(for='name') Name
             .help-block.with-errors
           .form-group
-            input#cemail.form-control-input(type='email', required='')
-            label.label-control(for='cemail') Email
+            input#email.form-control-input(name='email',type='email', required='')
+            label.label-control(for='email') Email
             .help-block.with-errors
           .form-group
-            textarea#cmessage.form-control-textarea(required='')
-            label.label-control(for='cmessage') Your message
+            textarea#message.form-control-textarea(name='message',required='')
+            label.label-control(for='message') Your message
             .help-block.with-errors
           .form-group.checkbox
             input#cterms(type='checkbox', value='Agreed-to-Terms', required='')

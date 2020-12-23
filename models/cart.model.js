@@ -1,10 +1,13 @@
 var mongoose = require('mongoose');
 
 var accountSchema = new mongoose.Schema({
-		product_id:String,
-		quantity:Number,
-		sumprice:Number,
-		account_id:String
+		
+		account:String,
+		giohang:{
+			product_id:String,
+			quantity:Number
+		}
+			
 	},
 	{
     	versionKey: false 

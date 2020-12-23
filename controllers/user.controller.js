@@ -6,6 +6,8 @@ var Account = require('../models/account.model.js');
 
 var User = require('../models/user.model.js');
 
+var Cart = require('../models/cart.model.js');
+
 // var shortid = require('shortid');
 
 module.exports.index = function(req,res){
@@ -166,8 +168,15 @@ module.exports.editUser = function(req,res){
 module.exports.deleteUser = function(req,res){
 	//var ObjectId = (require('mongoose').Types.ObjectId);
 
-	User.findOneAndRemove({account_id:req.params.id}).then(function(){
-		Account.findOneAndRemove({userid:req.params.id}).then(function(){
+	User.findOneAndRemove({account_id:req.params.id}).then(function(data){
+		fs.unlink('./public/uploads/'+data.avata,function(err){});
+
+		Account.findOneAndRemove({userid:req.params.id}).then(function(data1){
+			
+			Cart.findOneAndRemove({account:data1.email}).then(function(data2){
+				
+			});
+
 			res.redirect('/logged/admin');
 		});
 	});

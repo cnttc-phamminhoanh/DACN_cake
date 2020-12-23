@@ -2,6 +2,8 @@ var Account = require('../models/account.model.js');
 
 var User = require('../models/user.model.js');
 
+var Cart = require('../models/cart.model.js');
+
 var md5 = require('md5');
 
 var shortid = require('shortid');
@@ -40,9 +42,21 @@ module.exports.postRegister = function(req,res){
 					address:"",
 					phone:"",
 					identitycard:"",
+					avata:""
 				};
 				var dataUser = new User(item1);
 				dataUser.save();
+
+				var item2 = {
+					account:email,
+					giohang:{
+						product_id:"",
+						quantity:0
+					}
+				}
+				var dataCart = new Cart(item2);
+				dataCart.save();
+
 
 				res.redirect('/auth/login')
 			}

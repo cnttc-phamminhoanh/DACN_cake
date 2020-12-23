@@ -26,6 +26,8 @@ var authMiddleware = require('./middlewares/auth.middleware.js');
 
 var Product = require('./models/product.model.js');
 
+var Contacts = require('./models/contact.model.js');
+
 var Salecake = require('./models/salecake.model.js');
 
 var app = express();
@@ -53,6 +55,22 @@ app.get('/',function(req,res){
 			});
 		})
 	});
+});
+
+app.post('/contacts',function(req,res){
+	var name = req.body.name;
+	var email = req.body.email;
+	var message = req.body.message;
+	if(name&&email&&message){
+		var item = {
+				name:name,
+				email:email,
+				message:message
+			};
+		var contact = new Contacts(item);
+		contact.save();
+		res.redirect('/');
+	}
 });
 
 app.use('/auth',authRouter);
