@@ -12,39 +12,43 @@ module.exports.addToCart = function(req,res,next){
 	
 	var ObjectId = (require('mongoose').Types.ObjectId);
 
-	Cart.find({account:req.signedCookies.userId}).then(function(data){
-			
-		//console.log(data[0]);
+	Account.find({_id:req.signedCookies.userId}).then(function(data){
+		//console.log(data);
 
-		var tontai = false;
+		Cart.find({account:data[0].email}).then(function(data1){
+			//console.log(data1);
 
-		var dataItem = data[0].giohang;
+			var tontai = false;
 
+			var dataItem = data1[0].giohang;
 
-		for(var i=0;i<data.length;i++){
+			//console.log(dataItem);
 
-			if(dataItem[i].product_id === req.params.productId){
+			for(var i=0;i<dataItem.length;i++){
 
-				dataItem[i].quantity += 1;
+		 		if(dataItem[i].product_id === req.params.productId){
 
-				dataItem[i].save();
+		 			dataItem[i].quantity += 1;
+
+		 			dataItem[i].save();
+						
+		 			tontai = true;
+		 		}
+
+	 		}
+
+	 		if(tontai === false){
+
+		 		// dataItem = new {
+		 		// 	product_id : req.params.productId,
+		 		// 	quantity : 1
+		 		// };
 					
-				tontai = true;
-			}
+		 		// dataItem.save();
 
-		}
-			
-		if(tontai === false){
+	 		}
 
-			dataItem = new {
-				product_id : req.params.productId,
-				quantity : 1
-			};
-				
-			dataItem.save();
+		});
+	});
+}	
 
-		}
-
-	});				
-
-}

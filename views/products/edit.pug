@@ -1,0 +1,27 @@
+extends ../layouts/khungadmin.pug
+block preloader
+	include ../layouts/preloader.pug
+block navbar
+	include ../users/navbar.pug
+block userList
+	br
+	br
+	.col-md-5.col-sm-6.col-xs-12.row-container(style='margin-left:380px;')
+		form(action="/users/editProduct",method="POST",enctype='multipart/form-data')
+			h1(style='margin-left:125px;') Edit product
+			br
+			br
+			if detailProduct 
+				.from-group
+					label(for="image") Image
+					input#image.form-control-file(name="image",type="file")
+				.form-group
+					label(for='name') Name
+					input#name.form-control(name="name",type='text',value=detailProduct?detailProduct.name:"")
+				.form-group
+					label(for='price') Price
+					input#price.form-control(name="price",type='text',value=detailProduct?detailProduct.price:"")
+				.form-group
+					label.label(for='content') Content
+					input#content.form-control(name="content",type='text',value=detailProduct?detailProduct.content:"")
+				button.btn.btn-success.btn-block.my-3 Save			

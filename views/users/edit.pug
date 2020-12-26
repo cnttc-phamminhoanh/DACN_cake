@@ -4,9 +4,11 @@ block preloader
 block navbar
 	include ../users/navbar.pug
 block userList
-	.col-md-5.col-sm-6.col-xs-12.row-container
+	.col-md-5.col-sm-6.col-xs-12.row-container(style='margin-left:380px;')
 		form(action="/users/editUser",method="POST",enctype='multipart/form-data')
-			h1 Edit user
+			h1(style='margin-left:140px;') Edit user
+			br
+			br
 			if detailUser 
 				.from-group
 					label(for="avatar") Avatar

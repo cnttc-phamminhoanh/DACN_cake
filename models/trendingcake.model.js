@@ -1,10 +1,7 @@
 var mongoose = require('mongoose');
 
 var productSchema = new mongoose.Schema({
-	name:String,
-	content:String,
-	price:String,
-	image:String
+	product_id:String
 },
 	{
     	versionKey: false 

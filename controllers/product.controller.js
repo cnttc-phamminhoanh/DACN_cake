@@ -1,13 +1,8 @@
-//var db = require('../db.js');
+var db = require('../db.js');
 
 var Product = require('../models/product.model.js');
 
-module.exports.create = function (req,res){
-	var name = req.body.name;
-	var content = req.body.name;
-	var price = req.body.name;
-	var image = req.body.name;
-};
+var Account = require('../models/account.model.js');
 
 module.exports.index = function(req,res){
 
@@ -79,3 +74,115 @@ module.exports.getid = function(req,res){
 		});
 	});
 }
+
+module.exports.createProduct = function (req,res){
+	res.render('products/create.pug');
+	
+};
+
+module.exports.postProduct = function(req,res){
+
+	if(req.file){
+		
+		//req.body.avatar = req.file.filename;
+
+		var item = {
+			name : req.body.name,
+			price : req.body.price,
+			content : req.body.content,
+			image : req.file.filename
+		}
+
+		var product = new Product(item);
+		product.save();
+	}
+
+};
+
+module.exports.listEdit = function (req,res){
+	var ObjectId = (require('mongoose').Types.ObjectId);
+
+	var user = ''; 
+
+	Account.find({_id:new ObjectId(req.signedCookies.userId)}).then(function(data1){
+		if(data1.length > 0){
+			user = data1[0].email;
+		}
+		
+		Product.find({}).then(function(data){
+
+			//console.log(data);
+			res.render('products/listEdit.pug',{
+				data:data,
+				user : user
+			});
+		});
+	});
+
+};
+
+module.exports.listDelete = function (req,res){
+	var ObjectId = (require('mongoose').Types.ObjectId);
+
+	var user = ''; 
+
+	Account.find({_id:new ObjectId(req.signedCookies.userId)}).then(function(data1){
+		if(data1.length > 0){
+			user = data1[0].email;
+		}
+		
+		Product.find({}).then(function(data){
+
+			res.render('products/listDelete.pug',{
+				data:data,
+				user : user
+			});
+		});
+	});
+	
+};
+
+
+module.exports.edit = function (req,res){
+	var ObjectId = (require('mongoose').Types.ObjectId);
+
+	Product.find({_id:new ObjectId(req.params.id)}).then(function(data){
+		
+		res.render('products/edit.pug',{			
+			detailProduct : data[0]
+		});
+					
+	});
+};
+
+module.exports.editProdut = function(req,res){
+	var ObjectId = (require('mongoose').Types.ObjectId);
+
+	var productEdit;
+
+	if(req.file){
+		
+		req.body.image = req.file.filename;
+
+		productEdit = {
+			name : req.body.name,
+			price : req.body.price,
+			content : req.body.content
+		}
+		// Product.find({}).then(function(data){
+		// 	//console.log(data);
+		// 	fs.unlink('./public/images/'+data[0].image,function(err){});
+		// });
+	}
+	else{
+		productEdit = {
+			name : req.body.name,
+			price : req.body.price,
+			content : req.body.content
+		}
+	}
+
+	// Product.findOneAndUpdate({},productEdit).then(function(data){
+
+	// });
+};

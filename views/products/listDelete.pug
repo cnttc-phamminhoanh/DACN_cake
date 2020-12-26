@@ -1,0 +1,74 @@
+doctype html
+head
+  meta(charset='UTF-8')
+  meta(name='viewport', content='width=device-width, initial-scale=1.0')
+  title Aria Admin
+  link(rel='icon', href='http://localhost:3000/images/favicon.png')
+  script(src='https://code.jquery.com/jquery-3.5.1.slim.min.js', integrity='sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj', crossorigin='anonymous')
+  link(href='http://localhost:3000/css/sb-admin-2.min.css', rel='stylesheet')
+  link(href='https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i', rel='stylesheet')
+  link(rel='stylesheet', href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css')
+  link(href='https://fonts.googleapis.com/css?family=Montserrat:500,700&display=swap&subset=latin-ext', rel='stylesheet')
+  link(href='http://localhost:3000/css/bootstrap.css', rel='stylesheet')
+  link(href='http://localhost:3000/css/styles.css', rel='stylesheet')
+  
+  link(rel='stylesheet', href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css')
+  link(href='https://cdn.jsdelivr.net/npm/boxicons@2.0.5/css/boxicons.min.css', rel='stylesheet')  
+  script(src='https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js', integrity='sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV', crossorigin='anonymous')
+  script(src='https://unpkg.com/axios/dist/axios.min.js')
+  script(src='http://localhost:3000/js/jquery.min.js')
+  script(src='http://localhost:3000/js/popper.min.js')
+  script(src='http://localhost:3000/js/bootstrap.min.js')
+  script(src='http://localhost:3000/js/jquery.easing.min.js')
+  script(src='http://localhost:3000/js/swiper.min.js')
+  script(src='http://localhost:3000/js/jquery.magnific-popup.js')
+  script(src='http://localhost:3000/js/morphext.min.js')
+  script(src='http://localhost:3000/js/isotope.pkgd.min.js')
+  script(src='http://localhost:3000/js/validator.min.js')
+  script(src='http://localhost:3000/js/scripts.js')
+  script(src='http://localhost:3000/js/navbar.js')
+body
+  .spinner-wrapper
+  .spinner
+    .bounce1
+    .bounce2
+    .bounce3
+  nav.navbar.navbar-expand-md.navbar-light.bg-dark.sticky-top
+      .container-fluid
+        a.navbar-brand(href='/')
+          img(src='http://localhost:3000/images/logo.svg', alt='alternative',style='height:32px;weight:113px')
+        button.navbar-toggler(type='button', data-toggle='collapse', data-target='#navbarResponsive', aria-controls='navbarNav', aria-expanded='false', aria-label='Toggle navigation')
+          span.navbar-toggler-icon
+      .collapse.navbar-collapse#navbarResponsive
+        ul.navbar-nav.ml-auto
+          //- li.nav-item.active
+          //-   a.nav-link(href='/') Home 
+          li.nav-item
+            if user 
+              a.nav-link(style='color:#fff;text-decoration:none',href='#') #{user}    
+          li.nav-item
+            a.nav-link(style='color:#fff;text-decoration:none',href='/logout') Logout
+  br
+  br
+  br            
+  h1(style='margin-left:525px') Product List
+  br
+  br
+  table.table
+    thead
+      tr
+        th(scope='col') Image
+        th(scope='col') Name
+        th(scope='col') Price
+        th(scope='col') Action
+    tbody#rowCoordiantes
+      if data
+        each item in data
+          tr
+            //- th(scope='row')=item.image
+            th
+              img(style="width:40px;height:40px;image-rendering: unset;object-fit: fill;",src="http://localhost:3000/images/"+(item.image !== ""?item.image:"user.jfif"))
+            td=item.name
+            td=item.price
+            td
+              a.btn.btn-danger(href='/users/index/') Delete

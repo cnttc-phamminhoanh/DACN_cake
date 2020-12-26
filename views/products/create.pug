@@ -1,0 +1,27 @@
+extends ../layouts/khungadmin.pug
+block preloader
+	include ../layouts/preloader.pug
+block navbar
+	include ../users/navbar.pug
+block userList
+	.col-md-5.col-sm-6.col-xs-12.row-container
+		form(action="/products/create",method="POST",enctype='multipart/form-data')
+			h1 Create Product
+			
+			.form-group
+				label(for='name') Name 
+				input#name.form-control(name="name",type='text', placeholder='Enter name')
+				
+			.form-group
+				label.label(for='price') Price
+				input#price.form-control(name="price",type='number', placeholder='Enter price')
+			
+			.form-group
+				label.label(for='price') Content
+				input#content.form-control(name="content",type='text', placeholder='Enter content')
+
+			.from-group
+					label(for="image") Image
+					input#image.form-control-file(name="image",type="file")
+
+			button.btn.btn-success.btn-block.my-3 Create
