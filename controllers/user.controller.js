@@ -34,10 +34,6 @@ module.exports.index = function(req,res){
 
 module.exports.search = function(req,res){
 
-	// var matchedUsers = db.get('users').value().filter(function(user){
-	// 	return user.name.toLowerCase().indexOf(q.toLowerCase()) != -1;
-	// });
-
 	var ObjectId = (require('mongoose').Types.ObjectId);
 
 	var q = req.query.q;

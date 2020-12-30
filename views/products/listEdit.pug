@@ -69,6 +69,6 @@ body
             th
               img(style="width:40px;height:40px;image-rendering: unset;object-fit: fill;",src="http://localhost:3000/images/"+(item.image !== ""?item.image:"user.jfif"))
             td=item.name
-            td=item.price
+            td=item.price + " VND"
             td
               a.btn.btn-info(href='http://localhost:3000/products/edit/'+item._id) Edit

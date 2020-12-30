@@ -7,7 +7,7 @@ block userList
 	br
 	br
 	.col-md-5.col-sm-6.col-xs-12.row-container(style='margin-left:380px;')
-		form(action="/users/editProduct",method="POST",enctype='multipart/form-data')
+		form(action="/products/editProduct",method="POST",enctype='multipart/form-data')
 			h1(style='margin-left:125px;') Edit product
 			br
 			br
@@ -24,4 +24,7 @@ block userList
 				.form-group
 					label.label(for='content') Content
 					input#content.form-control(name="content",type='text',value=detailProduct?detailProduct.content:"")
+				.form-group(style='display:none;')
+					label.label(for='productId') ProductId
+					input#productId.form-control(name="productId",type='text',value=detailProduct?detailProduct._id:"")
 				button.btn.btn-success.btn-block.my-3 Save			

@@ -85,7 +85,7 @@ app.use('/logout',logoutRouter);
 
 app.use('/cart',authMiddleware.requireAuth,cartRoute)
 
-app.use('/products',productRoute)
+app.use('/products',authMiddleware.requireAuth,productRoute)
 
 //app.use('/products',productRoute);
 

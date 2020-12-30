@@ -8,7 +8,7 @@ var requirePermission = require('../middlewares/auth.middleware.js')
 
 var router = express.Router();
 
-router.get('/',requirePermission.requireCustomer,controllerLogged.customer);
+router.get('/',controllerLogged.customer);
 
 router.get('/employee',requirePermission.requireAE,controllerLogged.employee);
 

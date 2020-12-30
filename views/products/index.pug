@@ -5,7 +5,7 @@ block navbar
 	#navbar.l-navbar
 		nav.nav
 			div
-				a.nav__logo(href='#',style='text-decoration:none;')
+				a.nav__logo(href='/',style='text-decoration:none;')
 					img.nav__logo-icon(src='http://localhost:3000/images/favicon.png', alt='')
 					span.nav__logo-text Aria Admin
 				#nav-toggle.nav__toggle
@@ -16,7 +16,6 @@ block navbar
 					a.nav__link(href='http://localhost:3000/products/create')
 						span.nav__text Tạo sản phẩm
 					a.nav__link(href='http://localhost:3000/products/edit')
-						
 						span.nav__text Sửa sản phẩm
 					a.nav__link(href='http://localhost:3000/products/delete')
 						
@@ -50,7 +49,7 @@ block userList
 			- var n = 1;	
 			while n <= totalPage
 				li.page-item
-					a.page-link(href='products?page='+n)= n++		
+					a.page-link(href='/products?page='+n)= n++		
 									
 
 				

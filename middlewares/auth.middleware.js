@@ -27,11 +27,11 @@ module.exports.checkLogin = function(req,res,next){
 		Account.find({_id:new ObjectId(req.signedCookies.userId)}).then(function(data){
 			if(data.length>0){
 		
-				if(data[0].role===0){
-					res.redirect('/logged/');
-				}
-				else if(data[0].role===1){
-					res.redirect('/logged/employee');
+				// if(data[0].role===0){
+				// 	res.redirect('/logged/');
+				// }
+				if(data[0].role===1){
+					res.redirect('/products/');
 				}
 				else{
 					res.redirect('/users/index');
@@ -45,15 +45,16 @@ module.exports.checkLogin = function(req,res,next){
 	}
 }
 
-module.exports.requireCustomer = function(req,res,next){
-	if(res.locals.user.role === 0){
+// module.exports.requireCustomer = function(req,res,next){
+// 	if(res.locals.user.role === 0){
 
-		next();
-	}
-	else{
-		res.json('Not permission');
-	}
-};
+// 		next();
+// 	}
+// 	else{
+// 		res.json('Not permission');
+// 	}
+// };
+
 module.exports.requireEmployee = function(req,res,next){
 	if(res.locals.user.role === 1){
 		
@@ -73,7 +74,7 @@ module.exports.requireAdmin = function(req,res,next){
 	}
 };
 module.exports.requireAE = function(req,res,next){
-	if(res.locals.user.role > 0){
+	if(res.locals.user.role >= 1){
 		next();
 	}
 	else{

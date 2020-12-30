@@ -4,6 +4,8 @@ var multer  = require('multer');
 
 var router = express.Router();
 
+var requirePermission = require('../middlewares/auth.middleware.js');
+
 var controller = require('../controllers/product.controller.js')
 
 var storage = multer.diskStorage({
@@ -19,20 +21,22 @@ var upload = multer({storage: storage});
 
 router.get('/',controller.index);
 
-router.get('/create',controller.createProduct);
+router.get('/search',controller.search);
 
-router.get('/edit',controller.listEdit);
+router.get('/create',requirePermission.requireAdmin,controller.createProduct);
 
-router.get('/edit/:id',controller.edit);
+router.get('/edit',requirePermission.requireAdmin,controller.listEdit);
 
-router.post('/editProduct',upload.single('image'),controller.editProdut);
+router.get('/edit/:id',requirePermission.requireAdmin,controller.edit);
 
-router.get('/delete',controller.listDelete);
+router.post('/editProduct',requirePermission.requireAdmin,upload.single('image'),controller.editProduct);
 
-router.post('/create',upload.single('image'),controller.postProduct);
+router.get('/delete',requirePermission.requireAdmin,controller.listDelete);
+
+router.post('/create',requirePermission.requireAdmin,upload.single('image'),controller.postProduct);
 
 router.get('/:id',controller.getid);
 
-router.get('/search',controller.search)
+
 
 module.exports = router;

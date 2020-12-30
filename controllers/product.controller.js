@@ -1,5 +1,7 @@
 var db = require('../db.js');
 
+var fs = require('fs');	
+
 var Product = require('../models/product.model.js');
 
 var Account = require('../models/account.model.js');
@@ -29,41 +31,33 @@ module.exports.index = function(req,res){
 };
 
 module.exports.search = function(req,res){
-	
+
 	var q = req.query.q;
-	if (req.query.q){
-		const regex = new RegExp(req.query.q,'gi');
-		//const regex = new RegExp(escapeRegex(req.query.q), 'gi');
-		Product.find({ name : regex }).then(function(data){
-		  
-			res.render('products/index.pug',{
-				products : data,
-				key:q
-			});
 
+	Product.find({}).then(function(datas)
+	{
+		var matchedProducts = datas.filter(function(product)
+		{
+			return product.name.toLowerCase().indexOf(q.toLowerCase()) != -1;
 		});
-		return;
 
-		// var matchedProducts = db.get('products').value().filter(function(product){
-		// 	return product.name.toLowerCase().indexOf(q.toLowerCase()) != -1;
-		// });
-		// res.render('products/index.pug',{
-		// 	products : matchedProducts,
-		// 	key : q
-		// });
-		// return;
-	}
-	else{
 		res.render('products/index.pug',{
-			errors: [
-				'Require enter the search word.'
-			]
+				// user : user,
+			products : matchedProducts,
+			key : q
 		});
-		return;
-	}
-	// function escapeRegex(text) {
- 	//    return text.replace(/[-[\]{}()*+?.,\\^$|#\s]/g, "\\$&");
-	// };
+
+	});
+
+	// else{
+	// 	res.render('products/index.pug',{
+	// 		errors: [
+	// 			'Require enter the search word.'
+	// 		]
+	// 	});
+	// 	return;
+	// }
+
 };
 
 module.exports.getid = function(req,res){
@@ -147,42 +141,58 @@ module.exports.edit = function (req,res){
 	var ObjectId = (require('mongoose').Types.ObjectId);
 
 	Product.find({_id:new ObjectId(req.params.id)}).then(function(data){
-		
+		//console.log(data);
 		res.render('products/edit.pug',{			
 			detailProduct : data[0]
 		});
-					
+		
 	});
 };
 
-module.exports.editProdut = function(req,res){
+module.exports.editProduct = function(req,res){
 	var ObjectId = (require('mongoose').Types.ObjectId);
 
 	var productEdit;
 
-	if(req.file){
+	if(req.file&&req.body.name!=""&&req.body.price!="")
+	{
 		
-		req.body.image = req.file.filename;
+		// req.body.image = req.file.filename;
 
+		productEdit = {
+			name : req.body.name,
+			price : req.body.price,
+			content : req.body.content,
+			image : req.file.filename
+		}
+		Product.find({_id:new ObjectId(req.body.productId)}).then(function(data){
+			//console.log(data);
+			fs.unlink('./public/images/'+data[0].image,function(err){});
+		});
+	}
+	else
+	{
 		productEdit = {
 			name : req.body.name,
 			price : req.body.price,
 			content : req.body.content
 		}
-		// Product.find({}).then(function(data){
-		// 	//console.log(data);
-		// 	fs.unlink('./public/images/'+data[0].image,function(err){});
-		// });
-	}
-	else{
-		productEdit = {
-			name : req.body.name,
-			price : req.body.price,
-			content : req.body.content
-		}
 	}
 
-	// Product.findOneAndUpdate({},productEdit).then(function(data){
-
-	// });
+	Product.findOneAndUpdate({_id:new ObjectId(req.body.productId)},productEdit).then(function(data){
+		res.redirect('/products/edit');
+	});
 };
+
+module.exports.listDelete = function(req,res){
+
+	var ObjectId = (require('mongoose').Types.ObjectId);
+
+	Product.findOneAndRemove({_id:new ObjectId(req.params.id)}).then(function(data){
+
+		fs.unlink('./public/images/'+data.image,function(err){});
+
+		res.redirect('/products/delete');
+		
+	});
+}
