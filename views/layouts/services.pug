@@ -4,65 +4,18 @@
       .col-lg-12
         .section-title DỊCH VỤ
         h2 Các loại bánh bán chạy
-      // end of col
-    // end of row
     .row
       .col-lg-12
-        // Card
-        .card
-          .card-image
-            img.img-fluid(style="width:690px;height:194px;object-fit: cover;",src='images/PHOMAITRAXANH.jpg', alt='alternative')
-          .card-body
-            h3.card-title Phô mai trà xanh 
-            p
-              | Một sự sáng tạo mới mẻ, kết hợp giữa trà xanh đậm đà và phô mai ít béo.
-            //- ul.list-unstyled.li-space-lg
-            //-   li.media
-            //-     i.fas.fa-square
-            //-     .media-body Environment and competition
-            //-   li.media
-            //-     i.fas.fa-square
-            //-     .media-body Designing the marketing plan
-            p.price
-              | Giá : 
-              span 29.000 VND
-          .button-container
-            a.btn-solid-reg.page-scroll(href='#callMe') Chi tiết
-        .card
-          .card-image
-            img.img-fluid(style="width:690px;height:194px;object-fit: cover;",src='images/MOUSSEDAO.png', alt='alternative')
-          .card-body
-            h3.card-title Bánh Mousse Đào
-            p
-              | Một sự kết hợp khéo léo giữa kem và lớp bánh mềm, được phủ lên trên vài lát đào ngon tuyệt.
-            //- ul.list-unstyled.li-space-lg
-            //-   li.media
-            //-     i.fas.fa-square
-            //-     .media-body Business strategy planning
-            //-   li.media
-            //-     i.fas.fa-square
-            //-     .media-body Taking the planned actions
-            p.price
-              | Giá :  
-              span 29.000 VND
-          .button-container
-            a.btn-solid-reg.page-scroll(href='#callMe') Chi ti&#x1EBF;t
-        .card
-          .card-image
-            img.img-fluid(style="width:690px;height:194px;object-fit: cover;",src='images/MousseCacao.jpg', alt='alternative')
-          .card-body
-            h3.card-title Bánh Mousse CaCao
-            p
-              | Bánh Mousse Ca Cao, là sự kết hợp giữa ca-cao Việt Nam đậm đà cùng kem tươi.
-            //- ul.list-unstyled.li-space-lg
-            //-   li.media
-            //-     i.fas.fa-square
-            //-     .media-body Maintaining the leader status
-            //-   li.media
-            //-     i.fas.fa-square
-            //-     .media-body Acquisitions the right way
-            p.price
-              | Giá : 
-              span 29.000 VND
-          .button-container
-            a.btn-solid-reg.page-scroll(href='#callMe') Chi ti&#x1EBF;t
+        if trendingcake
+          each item in trendingcake
+            .card
+              .card-image
+                img.img-fluid(style="width:690px;height:194px;object-fit: cover;",src='http://localhost:3000/images/' + item.image, alt='alternative')
+              .card-body
+                h3.card-title=item.name 
+                p=item.content
+                p.price
+                  | Giá : 
+                  span=item.price +" VND"
+              .button-container
+                a.btn-solid-reg.page-scroll(href='http://localhost:3000/products/' + item._id) Chi tiết

@@ -33,10 +33,10 @@ router.post('/editProduct',requirePermission.requireAdmin,upload.single('image')
 
 router.get('/delete',requirePermission.requireAdmin,controller.listDelete);
 
+router.get('/deleteProduct/:id',requirePermission.requireAdmin,controller.deleteProduct)
+
 router.post('/create',requirePermission.requireAdmin,upload.single('image'),controller.postProduct);
 
 router.get('/:id',controller.getid);
-
-
 
 module.exports = router;

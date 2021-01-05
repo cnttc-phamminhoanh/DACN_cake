@@ -30,6 +30,8 @@ var Contacts = require('./models/contact.model.js');
 
 var Salecake = require('./models/salecake.model.js');
 
+var Trendingcake = require('./models/trendingcake.model.js');
+
 var app = express();
 
 app.set('view engine', 'pug');
@@ -47,14 +49,53 @@ app.use(express.static('public'));
 var port = 3000;
 
 app.get('/',function(req,res){
+
+	var arrayTrending = [];
+
+	var arraySalecake = [];
+
 	Product.find({}).then(function(data){
-		Salecake.find({}).then(function(data1){
+
+		Trendingcake.find({}).then(function(data1){
+
+			for(var i=0;i<data1.length;i++){
+
+				for(var j=0;j<data.length;j++) {
+
+					if(data1[i].product_id == data[j]._id){
+
+						arrayTrending.push(data[j]);
+					}
+				}
+					
+			}
+
+		});
+
+		Salecake.find({}).then(function(data2){
+
+			for(var k=0;k<data2.length;k++){
+
+				for(var l=0;l<data.length;l++) {
+
+					if(data2[k].product_id == data[l]._id){
+
+						arraySalecake.push(data[l]);
+					}
+				}
+
+			}
+
 			res.render('index.pug',{
 				products:data,
-				salecakes:data1
+				trendingcake:arrayTrending,
+				salecakes:arraySalecake
 			});
+			
 		})
+		
 	});
+
 });
 
 app.post('/contacts',function(req,res){

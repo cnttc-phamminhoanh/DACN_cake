@@ -61,35 +61,56 @@ module.exports.search = function(req,res){
 };
 
 module.exports.getid = function(req,res){
+
 	var ObjectId = (require('mongoose').Types.ObjectId);
+
 	Product.find({_id:new ObjectId(req.params.id)}).then(function(data){
+
 		res.render('products/detailProduct.pug',{
+
 			product:data[0]
+
 		});
+
 	});
+
 }
 
 module.exports.createProduct = function (req,res){
+
 	res.render('products/create.pug');
 	
 };
 
 module.exports.postProduct = function(req,res){
 
-	if(req.file){
-		
-		//req.body.avatar = req.file.filename;
+	var item;
 
-		var item = {
+	if(req.file){
+
+		item = {
 			name : req.body.name,
 			price : req.body.price,
 			content : req.body.content,
 			image : req.file.filename
 		}
 
-		var product = new Product(item);
-		product.save();
 	}
+	else
+	{
+		item = {
+			name : req.body.name,
+			price : req.body.price,
+			content : req.body.content,
+			image : ""
+		}
+	}
+
+	var product = new Product(item);
+
+	product.save();
+
+	res.redirect('/products/edit');
 
 };
 
@@ -188,6 +209,29 @@ module.exports.listDelete = function(req,res){
 
 	var ObjectId = (require('mongoose').Types.ObjectId);
 
+	var user = ''; 
+
+	Account.find({_id:new ObjectId(req.signedCookies.userId)}).then(function(data1){
+		if(data1.length > 0){
+			user = data1[0].email;
+		}
+		
+		Product.find({}).then(function(data){
+
+			//console.log(data);
+			res.render('products/listDelete.pug',{
+				data:data,
+				user : user
+			});
+		});
+	});
+
+}
+
+module.exports.deleteProduct = function(req,res){
+
+	var ObjectId = (require('mongoose').Types.ObjectId);
+
 	Product.findOneAndRemove({_id:new ObjectId(req.params.id)}).then(function(data){
 
 		fs.unlink('./public/images/'+data.image,function(err){});
@@ -195,4 +239,5 @@ module.exports.listDelete = function(req,res){
 		res.redirect('/products/delete');
 		
 	});
+
 }

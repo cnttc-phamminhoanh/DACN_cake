@@ -29,10 +29,10 @@ head
   script(src='http://localhost:3000/js/navbar.js')
 body
   .spinner-wrapper
-  .spinner
-    .bounce1
-    .bounce2
-    .bounce3
+    .spinner
+      .bounce1
+      .bounce2
+      .bounce3
   nav.navbar.navbar-expand-md.navbar-light.bg-dark.sticky-top
       .container-fluid
         a.navbar-brand(href='/')
@@ -67,7 +67,7 @@ body
           tr
             //- th(scope='row')=item.image
             th
-              img(style="width:40px;height:40px;image-rendering: unset;object-fit: fill;",src="http://localhost:3000/images/"+(item.image !== ""?item.image:"user.jfif"))
+              img(style="width:40px;height:40px;image-rendering: unset;object-fit: fill;",src="http://localhost:3000/images/"+(item.image !== ""?item.image:"cake.png"))
             td=item.name
             td=item.price + " VND"
             td

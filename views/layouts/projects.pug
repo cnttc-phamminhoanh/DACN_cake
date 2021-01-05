@@ -29,12 +29,12 @@
                   img(style="width:277px !important;",src='images/' + product.image, alt='alternative')
 
           if salecakes 
-            each salecake in salecakes
+            each item in salecakes
               .element-item.seo
-                a(href='/products/'+salecake.id)
+                a(href='/products/'+item._id)
                   .element-item-overlay
-                    span=salecake.name
-                  img(style="width:277px !important;",src='images/' + salecake.image, alt='alternative')
+                    span=item.name
+                  img(style="width:277px !important;",src='http://localhost:3000/images/' + item.image, alt='alternative')
 
 
           //- .element-item.development
