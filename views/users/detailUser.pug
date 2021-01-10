@@ -1,53 +1,38 @@
-nav.navbar.navbar-expand-md.navbar-dark.navbar-custom
-	button.navbar-toggler(type='button', data-toggle='collapse', data-target='#navbarsExampleDefault', aria-controls='navbarsExampleDefault', aria-expanded='false', aria-label='Toggle navigation')
-		span.navbar-toggler-awesome.fas.fa-bars
-		span.navbar-toggler-awesome.fas.fa-times
-	#navbarsExampleDefault.collapse.navbar-collapse
-		ul.navbar-nav.ml-auto
-			if user
-				li.nav-item
-					a.nav-link.page-scroll(href='#',style='color:black;')= user
-				li.nav-item
-					a.nav-link.page-scroll(href='/logout',style='color:black;') Logout
-if detailUser					
-	h1 View user
-	br
-	p
-		b Avata :
-		span &nbsp;
-		span
-			img(style="width:40px;height:40px;image-rendering: unset;object-fit: fill;",
-			src="http://localhost:3000/uploads/" + (detailUser.avata !== ""?detailUser.avata:"user.jfif"))
-	p
+h1(style='text-align:center') Profile user    
+br
+br      
+if detailUser						
+	img(style="margin-left:90px;border-radius:50%;position:absolute;width:230px;height:230px;image-rendering: unset;object-fit: fill;",src="http://localhost:3000/uploads/" + (detailUser.avata !== ""?detailUser.avata:"user.jfif"))
+	p(style='margin-left:450px;')
 		b Name :
 		span &nbsp;
 		span= detailUser.name
-	p
+	p(style='margin-left:450px;')
 		b Old :
 		span &nbsp;
 		span= detailUser.old
-	p
+	p(style='margin-left:450px;')
 		b Address :
 		span &nbsp;
 		span= detailUser.address
-	p
+	p(style='margin-left:450px;')
 		b Phone :
 		span &nbsp;
 		span= detailUser.phone
-	p
+	p(style='margin-left:450px;')
 		b Identity Card :
 		span &nbsp;
 		span= detailUser.identitycard
-	p
-		b Account Id :
-		span &nbsp;
-		span= detailUser.account_id	
+	// p
+	// 	b Account Id :
+	// 	span &nbsp;
+	// 	span= detailUser.account_id	
 	if accountuser	
-		p
+		p(style='margin-left:450px;')
 			b Email :
 			span &nbsp;
 			span= accountuser.email
-		p
-			b Password :
-			span &nbsp;
-			span= accountuser.password				
+		// p
+		// 	b Password :
+		// 	span &nbsp;
+		// 	span= accountuser.password				

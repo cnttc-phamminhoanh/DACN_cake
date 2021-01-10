@@ -67,7 +67,7 @@ module.exports.get = function(req,res){
 
 	Account.find({_id:new ObjectId(req.signedCookies.userId)}).then(function(data){
 		if(data.length > 0){
-			user = data[0].email;
+			user = data[0];
 		}
 		User.find({account_id:new RegExp(req.params.id)}).then(function(data1){
 			if(data1.length > 0){

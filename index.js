@@ -2,6 +2,8 @@ require('dotenv').config();
 
 var express = require('express');
 
+var axios = require('axios');
+
 var cookieParser = require('cookie-parser')
 
 var mongoose = require('mongoose');
@@ -86,10 +88,25 @@ app.get('/',function(req,res){
 
 			}
 
-			res.render('index.pug',{
-				products:data,
-				trendingcake:arrayTrending,
-				salecakes:arraySalecake
+			axios.get('https://5ff954cf17386d0017b51c63.mockapi.io/quitrinh').then(function(response){
+
+				axios.get('https://5ff954cf17386d0017b51c63.mockapi.io/danhgia').then(function(response1){
+
+					axios.get('https://5ff954cf17386d0017b51c63.mockapi.io/lienhe').then(function(response2){
+
+						res.render('index.pug',{
+							products:data,
+							trendingcake:arrayTrending,
+							salecakes:arraySalecake,
+							quitrinh:response.data,
+							danhgia:response1.data,
+							lienhe:response2.data
+						});
+
+					});
+
+				});
+				
 			});
 			
 		})

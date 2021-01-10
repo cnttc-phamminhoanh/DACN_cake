@@ -21,24 +21,25 @@
               .media-body Bạn sẽ trở thành đối tác quan trọng của công ty chúng tôi
           // Counter
           #counter
-            .cell
-              .counter-value.number-count(data-count='231') 1
-              .counter-info
-                | Người dùng 
-                br
-                | Hài lòng
-            .cell
-              .counter-value.number-count(data-count='121') 1
-              .counter-info
-                | Vấn đề
-                br
-                | Đã giải quyết
-            .cell
-              .counter-value.number-count(data-count='159') 1
-              .counter-info
-                | Đánh giá tốt 
-                br
-                | Nhận xét
+            if danhgia
+              .cell
+                .counter-value.number-count(data-count=danhgia[0].hailong) 1
+                .counter-info
+                  | Người dùng 
+                  br
+                  | Hài lòng
+              .cell
+                .counter-value.number-count(data-count=danhgia[0].giaiquyet) 1
+                .counter-info
+                  | Vấn đề
+                  br
+                  | Đã giải quyết
+              .cell
+                .counter-value.number-count(data-count=danhgia[0].nhanxettot) 1
+                .counter-info
+                  | Đánh giá tốt 
+                  br
+                  | Nhận xét
           // end of counter
         // end of text-container
       // end of col

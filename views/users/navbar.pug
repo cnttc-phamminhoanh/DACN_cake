@@ -1,7 +1,7 @@
 #navbar.l-navbar
   nav.nav
     div
-      a.nav__logo(href='#',style='text-decoration:none;')
+      a.nav__logo(href='/',style='text-decoration:none;')
         img.nav__logo-icon(src='http://localhost:3000/images/favicon.png', alt='')
         span.nav__logo-text Aria Admin
       #nav-toggle.nav__toggle
@@ -11,17 +11,17 @@
           i.bx.bx-grid-alt.nav__icon
           span.nav__text Trang chủ
         a.nav__link(href='http://localhost:3000/products/create/')
-          i.bx.bx-user.nav__icon
+          i.bx.bx-plus.nav__icon
           span.nav__text Tạo sản phẩm
         a.nav__link(href='http://localhost:3000/products/edit/')
-          i.bx.bx-bell.nav__icon
+          i.bx.bx-edit.nav__icon
           span.nav__text Sửa sản phẩm
         a.nav__link(href='http://localhost:3000/products/delete/')
-          i.bx.bx-heart.nav__icon
+          i.bx.bx-minus.nav__icon
           span.nav__text Xóa sản phẩm
-    //-     a.nav__link(href='#')
-    //-       i.bx.bx-bookmark.nav__icon
-    //-       span.nav__text Saved
+        a.nav__link(href='http://localhost:3000/logged/admin/')
+          i.bx.bx-user.nav__icon
+          span.nav__text Danh sách người dùng
     //-     a.nav__link(href='#')
     //-       i.bx.bx-message-rounded.nav__icon
     //-       span.nav__text Chat
